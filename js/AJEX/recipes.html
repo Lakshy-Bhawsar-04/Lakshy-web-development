@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recipes</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <button onclick="getrecipes()">
+        Get Recipes
+    </button>
+
+        <div class="container mt-3">
+    <div class="row" id="data">
+
+    </div>
+</div>
+
+
+    <script>
+
+        function getrecipes() {
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "https://dummyjson.com/recipes");
+
+            xhr.onload = function () {
+
+                if (xhr.status === 200) {
+
+                    let data = xhr.responseText;
+
+                    let menu = JSON.parse(data);
+
+                    var recipes = ``;
+
+                    for (let index of menu.recipes) {
+
+                        recipes += `
+         <div class="col-4 mb-3">
+                     <div class="card">
+                            <img src="${index.image}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">${index.name}</h5>
+                                    <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne${index.id}" aria-expanded="true" aria-controls="collapseOne">
+                Recipe Information
+              </button>
+            </h2>
+            <div id="collapseOne${index.id}" class="accordion-collapse collapse" data-bs-parent="#accordion${index.id}">
+              <div class="accordion-body">
+                
+                <div class="accordion-body">
+                <p><strong>ID: </strong>${index.id}</p>
+       
+                  <p><strong>Cuisine: </strong>${index.cuisine}</p>
+                  <p><strong>Difficulty: </strong>${index.difficulty}</p>
+                  <p><strong>Rating: </strong>${index.rating}</p>
+                  <p><strong>Cook Time: </strong>${index.cookTimeMinutes}</p>
+                  <p><strong>Servings: </strong>${index.servings}</p>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo${index.id}" aria-expanded="false" aria-controls="collapseTwo">
+                Ingredients
+              </button>
+            </h2>
+            <div id="collapseTwo${index.id}" class="accordion-collapse collapse" data-bs-parent="#accordion${index.id}">
+              <div class="accordion-body">
+                <strong>${index.ingredients}</strong>
+              </div>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        `
+
+                    }
+
+                    recipes += ` `;
+
+                    document.getElementById("data").innerHTML = recipes;
+
+                }
+                else {
+
+                    let errorcode = `404 Page not found`;
+
+                    document.getElementById("data").innerHTML = errorcode;
+
+                }
+
+            }
+
+            xhr.send();
+
+        }
+
+    </script>
+
+</body>
+
+</html>

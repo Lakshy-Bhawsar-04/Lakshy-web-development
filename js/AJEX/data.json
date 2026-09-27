@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "firstName": "Lakshy",
+        "lastName": "Bhawsar",
+        "gender": "Male",
+        "Phone": "+91 9876543210"
+    },
+    {
+        "id": 2,
+        "firstName": "Rahul",
+        "lastName": "Sharma",
+        "gender": "Male",
+        "Phone": "+91 9123456780"
+    },
+    {
+        "id": 3,
+        "firstName": "Priya",
+        "lastName": "Verma",
+        "gender": "Female",
+        "Phone": "+91 9988776655"
+    },
+    {
+        "id": 4,
+        "firstName": "Aman",
+        "lastName": "Patel",
+        "gender": "Male",
+        "Phone": "+91 9012345678"
+    },
+    {
+        "id": 5,
+        "firstName": "Neha",
+        "lastName": "Joshi",
+        "gender": "Female",
+        "Phone": "+91 9345678901"
+    },
+    {
+        "id": 6,
+        "firstName": "Rohit",
+        "lastName": "Singh",
+        "gender": "Male",
+        "Phone": "+91 9765432109"
+    },
+    {
+        "id": 7,
+        "firstName": "Anjali",
+        "lastName": "Yadav",
+        "gender": "Female",
+        "Phone": "+91 9234567890"
+    },
+    {
+        "id": 8,
+        "firstName": "Vikas",
+        "lastName": "Gupta",
+        "gender": "Male",
+        "Phone": "+91 9654321098"
+    },
+    {
+        "id": 9,
+        "firstName": "Sneha",
+        "lastName": "Mehta",
+        "gender": "Female",
+        "Phone": "+91 9456789012"
+    },
+    {
+        "id": 10,
+        "firstName": "Arjun",
+        "lastName": "Kumar",
+        "gender": "Male",
+        "Phone": "+91 9871234560"
+    }
+]

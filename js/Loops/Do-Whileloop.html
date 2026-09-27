@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do-While Loop in js</title>
+    <style>
+        .tb1{
+            font-size: 35px;
+            font-weight: bold;
+            text-shadow: 1px 1px gray;
+        }
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+        .blue{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+     <input type="number" id="num" placeholder="Enter any value" onkeyup="showTable()">
+
+     <ul id="showTable"></ul>
+
+     <script>
+        function showTable(){
+            num = document.getElementById('num').value;
+            console.log(num);
+            if(num==" "){
+                tableData=``;
+
+            }
+            else{
+                let i=1;
+                tableData="";
+               do{
+                    tableData+=`<li class="tb1"><span class="red">${num}</span>x<span class="green">${i}</span>=<span class="blue">${num*i}</span></li>`
+                    i++;
+                } while(i<=10)
+            }
+            document.getElementById('showTable').innerHTML=tableData;
+        }
+     </script>
+</body>
+</html>

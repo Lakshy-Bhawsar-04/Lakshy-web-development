@@ -1,0 +1,27 @@
+JavaScript Variables
+
+In JavaScript, variables are used to store data that your program can manipulate and reference. Here are some key concepts about variables:
+
+=>Declaring Variables:
+
+    ->var: Declares a variable, optionally initializing it to a value. It has function scope and is hoisted to the top of its function.
+
+    ->let: Declares a block-scoped, local variable, optionally initializing it to a value. Introduced in ES6.
+
+    ->const: Declares a block-scoped, read-only constant. Introduced in ES6. The value cannot be reassigned.
+
+
+    ==================================
+    var x = 10;  // Function scoped
+    let y = 20;  // Block scoped
+    const z = 30; // Block scoped and read-only
+
+    ===================================
+
+=>Variable Naming Rules:
+
+    ->Must begin with a letter, underscore (_), or dollar sign ($).
+
+    ->Subsequent characters can include letters, digits, underscores, or dollar signs.
+
+    ->Case-sensitive (myVar and myvar are different).

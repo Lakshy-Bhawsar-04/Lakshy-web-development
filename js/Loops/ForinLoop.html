@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For in loop</title>
+    <style>
+        #card{
+            width: 500px;
+            margin: 30px auto;
+        }
+        .key {
+            display: inline-block;
+            width: 150px;
+            color: blue;
+            font-weight: bold;
+            text-transform: capitalize;
+            text-align: left;
+        }
+
+        .value {
+            color: rgb(237, 6, 160);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="card"></div>
+
+    <script>
+        // create an object
+        let producINFO = { ProId: 34567, ProductName: "Noise Fit watch", ProductType: "Smart watch", Price: 2500, Waranty: "3 years", rating: 4.8, Color: "Black" };
+
+        // array format
+        // let producINFO =[34567,"Noise Fit Watch","Smart Watch",2500,"3 year",4.8,"Black"];
+
+        let pDetails = "";
+        // for in loop
+        for (let key in producINFO) {
+            pDetails += `<span class="key">${key}</span> : <span class="value">${producINFO[key]}</span><br>`
+        }
+        document.getElementById("card").innerHTML = pDetails;
+    </script>
+</body>
+
+</html>

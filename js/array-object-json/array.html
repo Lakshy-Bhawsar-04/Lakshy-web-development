@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array in  js </title>
+</head>
+<body>
+      <ul id="arrData"></ul>
+      <ul id="arrNumData"></ul>
+
+      <script>
+          let arr = [1001,"Lakshy Bhawsar", "Navlakha Indore"];
+
+          // predefined function         
+
+          // push()
+          arr.push("Madhay Pradesh");
+          arr.push("India",243567);
+
+          // pop()
+          arr.pop()
+          arr.pop()
+
+          // shift()
+          arr.shift()
+
+          // unshift()
+          arr.unshift(122,"Mr.")
+
+          arrayData=""
+        //   for(let i=0;i<arr.length;i++){
+        //         arrayData+=`<li>${arr[i]}</li>`
+        //   }
+        //   document.getElementById('arrData').innerHTML=arrayData;
+
+
+          // forEach()- Executes a provided function once for array element. no return value
+
+          arr.forEach((arrElement)=>{
+            arrayData+=`<li>${arrElement}</li>`
+          })
+          document.getElementById("arrData").innerHTML=arrayData;
+
+
+          arrNew=[1,2,3,4];
+          console.log(arrNew);
+          numdata="";
+          arrNew.forEach(element =>numdata+=`<li>${element*4}</li>`);
+          document.getElementById('arrNumData').innerHTML=numdata;
+
+
+          // map()
+
+          let stdmarks = [53,34,56,67,89,78,87];
+          console.log(stdmarks);
+          stdmarks=stdmarks.map((elements)=>elements+5);
+          console.log(stdmarks);
+
+          
+          //filter()- Creates a new array with all elements that pass the test implemented by the provided function
+
+          arrNum=[1,2,3,4,5,6,7,8,9,10];
+          console.log(arrNum)
+
+          filteredEvenArray=arrNum.filter((ele)=>ele%2==0)
+          console.log(filteredEvenArray);
+
+          filteredOddArray=arrNum.filter((ele)=>ele%2!=0);
+          console.log(filteredOddArray);
+
+          filteredGreaterArray=arrNum.filter((ele)=>ele>=5);
+          console.log(filteredGreaterArray);
+
+          filteredLessthenArray=arrNum.filter((ele)=>ele<=5);
+          console.log(filteredLessthenArray);
+
+
+          //Array.reduce()- Execute a reducer function on each element of the array.resulting in a single output value.
+
+          let stdAllMarks=[63,72,78,81,87,91,98];
+         // let sum = stdAllMarks.reduce((a,b)=>a+b);
+         console.log(stdAllMarks.reduce((a,b)=>a+b));
+         // console.log(sum);
+
+
+          
+
+
+
+
+
+      </script>
+</body>
+</html>

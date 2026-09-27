@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        product ={
+            proId:84759203,
+            prodName:"POCO M6 PRO 5G",
+            price:19000,
+            color:"Black",
+            prodWithprice:function(){
+                console.log("Name:"+this.prodName+" and price: "+this.price);
+            },
+            hardwareInfo:{
+                ram:"6 GB",
+                screensize:"17 inch",
+                processor:"snap dragon",
+                internalMemory:"128GB"
+
+            }
+
+        }
+       
+
+
+        for(let key in product){
+            console.log(`${key}:${product[key]}`);
+        }
+
+        product.prodWithprice();
+        console.log(product.hardwareInfo.screensize);
+
+        //covert object to json
+
+        //JSON.stringify() convert object JSON format
+
+        console.log(product);
+        let prodJson = JSON.stringify(product);
+        console.log(prodJson);
+
+
+        for(let key in prodJson){
+            console.log(`${key}:${prodJson[key]}`);
+
+        }
+        console.log(prodJson.length);
+
+
+    </script>
+</body>
+</html>

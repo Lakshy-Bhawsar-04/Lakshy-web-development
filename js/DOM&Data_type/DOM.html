@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM in js </title>
+</head>
+<body>
+     <h1 id="fHead"></h1>
+     <ul>
+        <li class="listp">Indore</li>
+        <li class="listp">Bhopal</li>
+        <li class="listp">Ujjain</li>
+        <li class="listp">Dewas</li>
+     </ul>
+
+     <script>
+        // getElementById 
+        document.getElementById("fHead").innerHTML="Home Page";
+        document.getElementById("fHead").style.color="blue";
+        document.getElementById("fHead").style.textAlign="center";
+
+        // getElementsByClassName
+        for(let i=0;i<=3;i++){
+            
+        document.getElementsByClassName("listp")[i].style.fontSize="44px";
+        document.getElementsByClassName("listp")[i].style.color="red";
+            
+        }
+        
+        document.getElementsByClassName("listp")[0].innerHTML="Jabalpur";
+
+        // getElementsByTagName
+        document.getElementsByTagName("h1")[0].style.textShadow="2px 2px red";
+        document.getElementsByTagName("ul")[0].style.backgroundColor="pink";
+
+        // querySelector
+        document.querySelector("#fHead").style.border="2px solid black";
+        document.querySelector(".listp").style.color="green";
+
+        // querySelectorAll
+        document.querySelectorAll("#fHead")[0].style.background="gray";
+        document.querySelectorAll(".listp")[3].style.textShadow="2px 2px blue";
+
+     </script>
+</body>
+</html>

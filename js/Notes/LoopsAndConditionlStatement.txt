@@ -1,0 +1,124 @@
+Conditional Statement:
+
+    ->if,if-else,else-if,nested if-else
+        syntex:
+        if(condition){
+            //line of code
+        }else if(another condition){
+             //line of code
+        }....
+        else{
+             //line of code
+        }
+
+    ->switch-
+        syntex:
+
+        initlization
+        switch(value){
+            case 1:
+            //line of code
+            break;
+            case 2:
+            //line of code
+            break;
+            ......
+            case n:
+            //line of code
+            break;
+            default:
+            //line of code
+            break;
+        }
+
+
+---------------------------------------
+JavaScript Loop Statements
+
+=>Loops are used to execute a block of code repeatedly until a specified condition is met. JavaScript supports several types of loops, including for, while, do...while, for...in, and for...of.
+
+1. for Loop: The for loop repeats a block of code a specified number of times.
+
+    -> Syntax:
+
+    for (initialization; condition; increment/decrement) {
+        // Block of code to be executed
+    }
+
+    ->Example
+
+    for (let i = 0; i < 5; i++) {
+        console.log("Iteration " + i);
+    }
+
+    -------------------------------------------------------
+2. while Loop: The while loop executes a block of code as long as a specified condition is true.
+
+    ->Syntax: 
+
+    initilization
+    while (condition) {
+        // Block of code to be executed
+
+        increment/decrement
+    }
+
+    ->Example
+
+    let i = 0;
+    while (i < 5) {
+        console.log("Iteration " + i);
+        i++;
+    }
+
+    ----------------------------------------------
+
+3. do...while Loop
+The do...while loop executes a block of code once, before checking if the condition is true, then repeats the loop as long as the condition is true.
+
+    ->Syntax:
+    
+    do {
+        // Block of code to be executed
+    } while (condition);
+
+    ->Example
+
+    let i = 0;
+    do {
+        console.log("Iteration " + i);
+        i++;
+    } while (i < 5);
+
+    --------------------------------------------
+4. for...in Loop: The for...in loop iterates over the properties of an object.
+
+    ->Syntax:
+    for (variable in object) {
+        // Block of code to be executed
+    }
+
+    ->Example
+    let person = {user1:{ name: "Alice", age: 25, city: "New York" },user2:{name:"rohan",age:34,city:"indore"}};
+
+    for (let key in person) {
+        console.log(key + ": " + person[key]);
+    }
+    ------------------------------------------
+
+5. for...of Loop: The for...of loop iterates over the values of an iterable object (like an array or a string).
+
+    ->Syntax:
+    for (variable of iterable) {
+        // Block of code to be executed
+    }
+
+    ->Example
+    let fruits = ["Apple", "Banana", "Cherry"];
+
+    for (let fruit of fruits) {
+        console.log(fruit);
+    }
+
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>utility function</title>
+    <style>
+        body {
+            margin: 0px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111827;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #clock {
+            background: #1f2937;
+            color: #00ff88;
+            font-size: 60px;
+            font-weight: bold;
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px 50px;
+             box-shadow: 0px 0px 25px #00ff88 ; 
+             letter-spacing: 5px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="clock"></div>
+
+    <script>
+        function showTime() {
+            let d = new Date();
+            console.log(d)
+            h = d.getHours();
+            m = d.getMinutes();
+            s = d.getSeconds();
+            console.log(s)
+
+            document.getElementById('clock').innerHTML = `${h}:${m}:${s}`
+        }
+        setTimeout(() => { console.log("hello") }, 1000);
+
+        //setTimeout(showTime,10000);
+        setInterval(showTime, 100)
+    </script>
+</body>
+
+</html>

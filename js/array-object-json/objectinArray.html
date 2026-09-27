@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object in array</title>
+</head>
+
+<body>
+    <div id="pdetais"></div>
+    <script>
+        myjson = [
+            {
+                ProductId: 1001,
+                ProductName: "iPhone 17",
+                brand: "Apple",
+                price: 79999,
+                category: "Mobile",
+                color: "Black",
+                stock: 10,
+                rating: 5.9,
+                description: "6.3 inch display"
+            },
+            {
+                ProductId: 2001,
+                ProductName: "Galaxy S25",
+                brand: "Samsung",
+                price: 74999,
+                category: "Mobile",
+                color: "Blue",
+                stock: 15,
+                rating: 5.6,
+                description: "6.2 inch display"
+            },
+            {
+                ProductId: 3001,
+                ProductName: "MacBook Air M4",
+                brand: "Apple",
+                price: 99999,
+                category: "Laptop",
+                color: "Silver",
+                stock: 8,
+                rating: 7.1,
+                description: "13.6 inch display"
+            },
+            {
+                ProductId: 4001,
+                ProductName: "HP Pavilion 15",
+                brand: "HP",
+                price: 58999,
+                category: "Laptop",
+                color: "Grey",
+                stock: 12,
+                rating: 4.7,
+                description: "15.6 inch display"
+            },
+            {
+                ProductId: 5001,
+                ProductName: "boAt Wave Sigma",
+                brand: "boAt",
+                price: 2999,
+                category: "Smart Watch",
+                color: "Black",
+                stock: 20,
+                rating: 3.5,
+                description: "1.39 inch display"
+            },
+            {
+                ProductId: 6001,
+                ProductName: "Dell Inspiron 15",
+                brand: "Dell",
+                price: 65999,
+                category: "Laptop",
+                color: "Silver",
+                stock: 10,
+                rating: 4.8,
+                description: "15.6 inch display"
+            }
+        ];
+        //loop for destructring multiple objects in array
+
+        var data = ``;
+
+        data += `<table border="1"><th>ProductId</th><th>ProductName</th><th>Brand</th><th>Price</th><th>Category</th><th>Color</th><th>Stock</th><th>Rating</th><th>Dessciption</th>`
+
+
+
+        for (var i = 0; i < myjson.length; i++) {
+
+            data += `<tr>`
+
+            for (var d in myjson[i]) {
+                // console.log(myjson[i][data])
+                data += `<td>${myjson[i][d]}</td>`
+            }
+            data += `</tr>`
+
+        }
+
+        data += `</table>`
+        console.log(data)
+        document.getElementById("pdetais").innerHTML = data;
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if-else in js</title>
+</head>
+
+<body onload="showcity()">
+    <select name="state" id="state" onclick="showCity()">
+        <option value="MP">MP</option>
+        <option value="UP" selected>UP</option>
+        <option value="MH">MH</option>
+        <option value="GJ">GJ</option>
+    </select>
+
+    <select name="city" id="cities" onclick="showPlace()"></select>
+    <select name="place" id="places"></select>
+
+    <script>
+        function showCity() {
+            let state = document.getElementById("state").value;
+
+            // console.log(state)
+
+            if (state=="MP") {
+                var citylist = `<option value="Indore">Indore</option>
+                <option value="Dewas">Dewas</option>
+                <option value="Rewa">Rewa</option>
+                <option value="Jabalpur">Jabalpur</option>`
+            }
+            else if(state=="UP"){
+                var citylist = `<option value="Varanasi">Varanasi</option>
+                <option value="Agra">Agra</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Prayagraj">Prayagraj</option>`
+            }
+            else if(state=="MH"){
+                var citylist = `<option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Nagpur">Nagpur</option>`
+                
+            }
+            else if(state=="GJ"){
+                var citylist = `<option value="Jamnagar">Jamnagar</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Surat">Surat</option>`
+            }
+            else{
+                citylist="";
+            }
+
+                document.getElementById("cities").innerHTML=citylist;
+
+        }
+
+
+
+        function showPlace(){
+            var city = document.getElementById("cities").value;
+
+            if(city=="Indore"){
+                var placelist = `<option value="Rajwada">Rajwada</option>
+                <option value="Vijay Nagar">Vijay Nagar</option>
+                <option value="Bhawar Kuva">Bhawar Kuva</option>
+                <option value="Prakash Nagar">Prakash Nagar</option>`
+            }
+            
+            else if (city == "Dewas") {
+
+                var placelist = `
+                    <option value="Dewas Tekri">Dewas Tekri</option>
+                    <option value="Meetha Talab">Meetha Talab</option>
+                `;
+
+            }
+
+            else if (city == "Rewa") {
+
+                var placelist = `
+                    <option value="White Tiger Zoo">White Tiger Zoo</option>
+                    <option value="Venkat Bhawan">Venkat Bhawan</option>
+                `;
+
+            }
+
+            else if (city == "Jabalpur") {
+
+                var placelist = `
+                    <option value="Bhedaghat">Bhedaghat</option>
+                    <option value="Dumna">Dumna Nature Park</option>
+                `;
+
+            }
+
+
+            // -------- UP --------
+
+            else if (city == "Varanasi") {
+
+                var placelist = `
+                    <option value="Kashi Vishwanath">Kashi Vishwanath</option>
+                    <option value="Ganga Ghat">Ganga Ghat</option>
+                `;
+
+            }
+
+            else if (city == "Agra") {
+
+                var placelist = `
+                    <option value="Taj Mahal">Taj Mahal</option>
+                    <option value="Agra Fort">Agra Fort</option>
+                    <option value="Mehtab Bagh">Mehtab Bagh</option>
+                `;
+
+            }
+
+            else if (city == "Lucknow") {
+
+                var placelist = `
+                    <option value="Bara Imambara">Bara Imambara</option>
+                    <option value="Hazratganj">Hazratganj</option>
+                `;
+
+            }
+
+            else if (city == "Prayagraj") {
+
+                var placelist = `
+                    <option value="Triveni Sangam">Triveni Sangam</option>
+                    <option value="Allahabad Fort">Allahabad Fort</option>
+                `;
+
+            }
+
+
+            // -------- MH --------
+
+            else if (city == "Mumbai") {
+
+                var placelist = `
+                    <option value="Gateway">Gateway of India</option>
+                    <option value="Marine Drive">Marine Drive</option>
+                    <option value="Juhu Beach">Juhu Beach</option>
+                `;
+
+            }
+
+            else if (city == "Pune") {
+
+                var placelist = `
+                    <option value="Shaniwar Wada">Shaniwar Wada</option>
+                    <option value="Aga Khan Palace">Aga Khan Palace</option>
+                `;
+
+            }
+
+            else if (city == "Nashik") {
+
+                var placelist = `
+                    <option value="Sula">Sula Vineyards</option>
+                    <option value="Pandavleni">Pandavleni Caves</option>
+                `;
+
+            }
+
+            else if (city == "Nagpur") {
+
+                var placelist = `
+                    <option value="Deekshabhoomi">Deekshabhoomi</option>
+                    <option value="Futala Lake">Futala Lake</option>
+                `;
+
+            }
+
+
+            // -------- GJ --------
+
+            else if (city == "Jamnagar") {
+
+                var placelist = `
+                    <option value="Lakhota Lake">Lakhota Lake</option>
+                    <option value="Lakhota Palace">Lakhota Palace</option>
+                `;
+
+            }
+
+            else if (city == "Ahmedabad") {
+
+                var placelist = `
+                    <option value="Sabarmati Ashram">Sabarmati Ashram</option>
+                    <option value="Kankaria Lake">Kankaria Lake</option>
+                `;
+
+            }
+
+            else if (city == "Rajkot") {
+
+                var placelist = `
+                    <option value="Rotary Museum">Rotary Dolls Museum</option>
+                    <option value="Aji Dam">Aji Dam</option>
+                `;
+
+            }
+
+            else if (city == "Surat") {
+
+                var placelist = `
+                    <option value="Dumas Beach">Dumas Beach</option>
+                    <option value="Science Centre">Science Centre</option>
+                `;
+
+            }
+            else{
+                 var placelist="";
+            }
+
+            document.getElementById("places").innerHTML=placelist;
+        }
+    </script>
+</body>
+
+</html>

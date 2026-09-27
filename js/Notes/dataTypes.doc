@@ -1,0 +1,94 @@
+
+DataType->
+
+JavaScript has a variety of data types that can be divided into two main categories: primitive types and object types. Here is a comprehensive list of these data types:
+
+#Primitive Data Types
+
+    =>Number:
+
+    ->Represents both integer and floating-point numbers.
+    ->Example: let num = 42;
+    --------------------------------------
+
+    =>String:
+
+    ->Represents a sequence of characters.
+    ->Example: let str = "Hello, World!";
+    --------------------------------------
+
+    =>Boolean:
+
+    ->Represents logical values: true or false.
+    ->Example: let isTrue = true;
+    ---------------------------------------    
+
+    =>Undefined:
+
+    ->Represents a variable that has been declared but not assigned a value.
+    ->Example: let undef;
+    ----------------------------------------
+
+
+    => Symbol:
+
+    ->Represents a unique and immutable identifier.
+    ->Example: let sym = Symbol('unique');
+    --------------------------------------------
+
+    =>BigInt:
+
+    ->Represents integers with arbitrary precision.
+    ->Example: let bigInt = 1234567890123456789012345678901234567890n;
+
+
+    ===========================================
+    Object Data Types
+
+    =>Object:
+
+    ->Represents a collection of key-value pairs.
+
+    ->Example: let obj = { name: "Alice", age: 30 };
+
+    ------------------------------------------
+
+    =>Array:
+
+    ->Represents an ordered collection of values.
+
+    ->Example: let arr = [1, 2, 3, 4];
+    -------------------------------------------
+    
+    =>Function:
+    
+    ->Represents a block of code designed to perform a particular task.
+
+    ->Example:
+        function greet() {
+            return "Hello!";
+        }
+        
+        const add=(a,b)=>{return a+b;}
+        add(2,3)
+    ------------------------------------------
+
+    =>Date:
+
+    ->Represents dates and times.
+
+    ->Example: let date = new Date();
+    -------------------------------------
+
+    =>RegExp:
+
+    ->Represents regular expressions for pattern matching.
+    ->Example: let regex = /ab+c/;
+
+    -------------------------------------
+
+    =>Null:
+
+    ->Represents the intentional absence of any object value.
+    ->Example: let empty = null;
+    -------------------------------------------

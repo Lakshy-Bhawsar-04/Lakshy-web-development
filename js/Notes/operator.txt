@@ -1,0 +1,10 @@
+Operator:
+
+    Unary Operator: ++,--
+    Binary Operator: 
+        ->Arithmetic: +,-,*,**,/,%
+        ->Rational: <,<=,>,>=,==,===,!=,!==
+        ->Logical : &&, ||, !,??(Nullish Coalescing)
+        ->bitwise: &, |, ^, ~, <<, >>, >>>(zero fill right shift)
+        ->Assignment: =,+=,-=,*=,**=,/=,%=,&&=, ||=,??=,&=, |=, ^=, ~=
+    Ternary Operator: ?:

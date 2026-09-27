@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator in js</title>
+</head>
+
+<body>
+    <script>
+        // unary Operator ++ , --
+        let a = 5;
+        console.log("value of a =", a);
+        console.log("Preincrement value of ++a =", ++a)
+        console.log("Postincrement value of a++ =", a++)
+        console.log("value of a =", a);
+
+        let b = 5;
+        console.log("value of b =", b);
+        console.log("Predecrement value of --b = ", --b)
+        console.log("Postdecrement value of b-- = ", b--)
+        console.log("value of b =", b);
+
+        //Binary Operator
+        // Arithmetic Operator-> +,-,*,**,/,%
+        let a1 = 10, b1 = 20;
+        console.log("value of a1+b1 = ", a1 + b1);
+        console.log("value of a1-b1 = ", a1 - b1);
+        console.log("value of a1*b1 = ", a1 * b1);
+        console.log("value of a1**b1 = ", a1 ** b1);
+        console.log("value of a1/b1 = ", a1 / b1);
+        console.log("value of a1%b1 = ", a1 % b1);
+
+        // Rational Operator < , > , <= , >= ,  == , === , != , !==
+        let a2 = 12, b2 = 14;
+        console.log("value of a2<b2 = ", a2 < b2)
+        console.log("value of a2>b2 = ", a2 > b2)
+        console.log("value of a2<=b2 = ", a2 <= b2)
+        console.log("value of a2>=b2 = ", a2 >= b2)
+        console.log("value of a2==b2 = ", a2 == b2)
+        console.log("value of a2===b2 = ", a2 === b2)
+        console.log("value of a2!=b2 = ", a2 != b2)
+        console.log("value of a2!==b2 = ", a2 !== b2)
+
+        //logical Operator && , || ,!
+        let x = 12, y = 18, z = 8; z
+        // let x = prompt("Enter 1 st number")
+        // let y = prompt("Enter 2 nd number")
+        //  let z = prompt("Enter 3 rd number")
+        if (x > y && x > z) {
+            console.log("x is greater (u = " + u + ")")
+        }
+        else if (y > x && y > z) {
+            console.log("y is greater (y = " + y + ")")
+        }
+        else {
+            console.log("z is greater (z = " + z + ")")
+        }
+
+        let busPass = false, ticket = false;
+        if (busPass == true || ticket == false) {
+            console.log("You are eligible for traveling")
+        }
+        else {
+            console.log("You can not eligible for traveling")
+        }
+
+        let ElectricityAvailable = "Yes";
+
+        if (!(ElectricityAvailable == "Yes")) {
+            console.log("start emergency light")
+        }
+
+        if (null ?? (ElectricityAvailable == "yes")) {
+            console.log("stop emergency light")
+
+        }
+
+        //bitwise Operator: &,|,^,~(0=>1,1=>(-2)),<<,>>,>>>(Zero fill right shift)
+        let x1=1 , y1=1;
+        console.log("x&y = ",x&y);
+        console.log("x|y = ",x|y);
+        console.log("x^y = ",x^y);
+        console.log("~x = ",~x);
+        console.log("~y = ",~y);
+
+
+        let z1=7 , z2=7;
+        console.log("z1<<2 = ",z1<<2);
+
+        console.log("z2>>2 = ",z2>>2)
+        console.log("z2>>>2 = ",z2>>>2)
+
+        //Assignment Operator: =,+=,-=,*=,**=,/=,%=,&&=,||=,??=,&=,|=,^=,~=
+
+        let v=10 , v1="Namaste!";
+        console.log("v = ",v);
+        console.log("v1 = ",v1);
+
+        v+=3, v1+=" Javascript";
+        console.log("v+=3 = ",v);
+        console.log("v1+=Javascript = ", v1);
+
+        v-=8; //v=v-8
+        console.log("v-=2 = ",v);
+
+        v*=2; //v=v*=2
+        console.log("v*=2 = ",v);
+
+        v**=2; //v=v**2
+        console.log("v**=2 = ",v);
+        
+        k=16
+        k&=2; //v=v&2
+        console.log("k&=2 = ",k)
+
+        v1=10;
+        v1|=5;//v1=v1|4
+        console.log("v1=v1|4 = ",v1);
+
+        u=10;
+        u^=4; // u = u^4
+        console.log("u^=4 = ",u);
+
+        //Ternary Operator
+
+       // let i = prompt("Enter value of i ",0);
+
+        // (i>=18)?console.log("Eligible for voting"):console.log("Not eligible for voting")
+
+
+    </script>
+</body>
+
+</html>

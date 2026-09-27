@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <button onclick="getData()">getData</button>
+    <div id="data"></div>
+
+    <script>
+        function getData(){
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("GET" , "data.json")
+
+        xhr.onload = function(){
+            console.log(xhr)
+
+            if(xhr.status === 200){
+                let user = xhr.responseText;
+                console.log(user)
+
+                let data =  JSON.parse(user);
+
+                var udata = '<table class="table table-border border-primary"><tr><th>Id</th><th>FullName</th><th>Gender</th><th>Phone Number</th></tr>'
+
+                for(let index of data){
+
+                    udata += `<tr><td>${index.id}</td>`
+                    udata += `<td>${index.firstName} ${index.lastName}</td>`
+                    udata += `<td>${index.gender}</td>`
+                    udata += `<td>${index.Phone}</td></tr>`
+
+                }
+
+                udata += "</table>"
+                document.getElementById("data").innerHTML=udata;
+
+           }else{
+
+            errocode = `404 page not found`;
+
+            document.getElementById("data").innerHTML=errocode;
+           }
+        }
+
+        xhr.send()
+    }
+    </script>
+     
+</body>
+</html>

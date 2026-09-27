@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date function </title>
+</head>
+<body>
+
+
+
+    <div><span id="hours"></span>:<span id="minutes"></span>:<span id="second"></span></div>
+      <script>
+        let d = new Date();
+        console.log(d);
+        console.log(d.getDate())
+        console.log(d.getDay())
+        console.log(d.getFullYear())
+        console.log(d.getHours())
+        console.log(d.getMinutes())
+        console.log(d.getMinutes())
+        console.log(d.getMilliseconds())
+        console.log(d.getMonth())
+        console.log(d.getTime())
+        console.log(d.getTimezoneOffset())
+        console.log(d.getUTCDate())
+        console.log(d.getUTCDay())
+
+        function showTime(){
+         let d =new Date()
+        let h = d.getHours();
+        let m = d.getMinutes();
+        let s = d.getSeconds();
+
+        document.getElementById("hours").innerHTML=h;
+        document.getElementById("minutes").innerHTML=m;
+        document.getElementById("second").innerHTML=s;
+        }
+
+        
+        setInterval(showTime,1000)
+
+      </script>
+</body>
+</html>

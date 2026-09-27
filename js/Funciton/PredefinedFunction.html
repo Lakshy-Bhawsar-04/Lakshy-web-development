@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr=[34,45,65,76,89,90];
+        console.log(arr.length);
+        console.log(arr.indexOf(90));
+        console.log(arr.includes(76));
+        console.log(arr.slice(1,5))
+        console.log(arr.find(function(value){
+            return value > 50;
+        }));
+        
+        console.log(arr.some(function(value){
+            return value >80;
+        }))
+
+        console.log(arr.every(function(value){
+            return value > 85;
+        }))
+
+        console.log(arr.findIndex(function(value){
+            return value > 55;
+        }))
+    </script>
+</body>
+</html>

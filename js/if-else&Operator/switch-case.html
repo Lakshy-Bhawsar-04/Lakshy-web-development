@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch case in js </title>
+    <style>
+        #animals{
+            font-size: 30px;
+        }
+        .imgpro{
+            height: 700px;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <select name="animal" id="animals" onclick="showAnimal()">
+        <option value="Lion">Lion</option>
+        <option value="Tiger">Tiger</option>
+        <option value="Elephant">Elephant</option>
+        <option value="horse">horse</option>
+    </select>
+
+    <div id="details"></div>
+
+
+    <script>
+        function showAnimal() {
+            var animals = document.getElementById("animals").value;
+
+            switch (animals) {
+                case "Lion":
+                    details = `<img src="./img/lion.png" alt="lion" class="imgpro">
+    <audio src="./img/Lion.mp3" controls autoplay loop></audio>
+                        `
+                    break;
+
+                case "Tiger":
+                    details = `<img src="./img/tiger.png" alt="tiger" class="imgpro">
+    <audio src="./img/tiger.mp3" controls autoplay loop></audio>
+                        `
+                    break;
+
+                case "Elephant":
+                    details = `<img src="./img/elephant.png" alt="elephant" class="imgpro">
+    <audio src="./img/elephant.mp3" controls autoplay loop></audio>
+                        `
+                        break;
+
+                 case "horse":
+                    details = `<img src="./img/horse .png" alt="horse" class="imgpro">
+    <audio src="./img/horse .mp3" controls autoplay loop></audio>
+                        `
+                        break;
+
+                  default:
+                    details = ``
+            }
+
+            document.getElementById("details").innerHTML = details;
+        }
+    </script>
+</body>
+
+</html>

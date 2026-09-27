@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data recived server to browser using AJAX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <button onclick="getdata()">getdata</button>
+    <div id="data"></div>
+
+    <script>
+        function getdata() {
+            // create XMLHttpRequest object
+            let xhr = new XMLHttpRequest();
+
+            //use open function to connect external server and call different types of API
+
+            xhr.open("GET", "https://dummyjson.com/users");
+
+            xhr.onload = function () {
+                console.log(xhr);
+
+                if (xhr.status === 200) {
+                    let user = xhr.responseText;
+                    // console.log(user)
+
+                    let data = JSON.parse(user);
+
+                    var udata = '<table class="table table-dark table-hover"><thead><tr><th>Id</th><th>FullName</th><th>Gender</th><th>Phone number</th></tr></thead>';
+
+                    for (let index of data.users) {
+                        // console.log(index)
+                        udata += `<tbody><tr><td>${index.id}</td>`;
+
+                        udata += `<td>${index.firstName} ${index.lastName}</td> `
+
+                        udata += `<td>${index.gender}</td>`
+
+                        udata += `<td>${index.phone}</td></tr></tbody>`
+                    }
+
+                    udata += "</table>";
+
+                    document.getElementById('data').innerHTML = udata;
+
+                } else {
+                    // console.log(`404 page not found`)
+
+                    errorcode = "404 Page not found"
+                    document.getElementById("data").innerHTML = errorcode;
+                }
+            }
+
+            //call xhr.send() method
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>

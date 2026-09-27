@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string function in js</title>
+</head>
+<body>
+
+    
+    <script>
+        let str = "Lakshy Bhawsar";
+        console.log(str);
+
+        //charAt() - Returns the character at a specified index.
+
+        console.log(str.charAt(5));
+
+        // string.inculdes()
+
+        let para = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam reiciendis adipisci ipsum fugiat suscipit minus laborum nihil dolorum nobis maxime? Ipsam, numquam distinctio at quae pariatur reiciendis quo aspernatur ipsa."
+
+        console.log(para.includes("indore"));
+        console.log(para.includes("Lorem"));
+        console.log(para.includes("ipsa"));
+
+
+        //String.indexOf()-
+
+        console.log(para.indexOf('L'));
+        
+
+        //String.slice()-
+
+        let newPara=para.slice(0,50);
+        console.log(newPara);
+
+
+        let fullname = "Ram Kumar Sharma";
+        console.log(fullname);
+        console.log(newPara.slice(0,8),".....");
+
+        //String.toLowerCase()-
+
+        console.log(fullname.toLowerCase())
+
+        //String.toUpperCase()-
+        let str1="Bhopal";
+        console.log(str1);
+        str1=str1.toUpperCase(str1);
+        console.log(str1)
+
+        str1=str1.toLocaleLowerCase()
+        console.log(str1)
+
+        //String.split()-
+
+        let cities = "indore,Bhopal,dewas,ujjain,dhar";
+
+        let url = "https://www.abcd.com/product/hrms_software/price"
+
+        let word = "he she it name we they";
+        
+        console.log(cities)
+        console.log(cities.split(","));
+        console.log(url.split("/"));
+        console.log(word.split(" "));
+        
+        
+
+
+
+    </script>
+</body>
+</html>

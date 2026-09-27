@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For loop in js</title>
+</head>
+<body onload="showYear()">
+     <select  id="year"></select>
+
+     <script>
+        function showYear(){
+            curentYear = new Date().getFullYear();
+            yearValue="";
+            for(let i=curentYear;i>=1950;i--){
+                yearValue+= `<option value="${i}">${i}</option>`
+            }
+            document.getElementById("year").innerHTML=yearValue;
+        }
+     </script>
+</body>
+</html>

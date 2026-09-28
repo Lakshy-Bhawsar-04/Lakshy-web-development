@@ -11,15 +11,14 @@ console.log(d.getSeconds());
 console.log(d.getMilliseconds());
 
 
-function showTime(){
-    let d = new Date();
-     h = d.getHours();
-     m = d.getMinutes();
-     s = d.getSeconds();
+function showTime() {
+    let d = new Date(); h = d.getHours();
+    m = d.getMinutes();
+    s = d.getSeconds();
 
     // console.log(h + ":" + m + ":" + s);
-     console.log(`${h}:${m}:${s}`);
+    console.log(`${h}:${m}:${s}`);
 }
 
-setInterval(showTime ,1000);
+setInterval(showTime, 1000);
 

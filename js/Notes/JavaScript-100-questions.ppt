@@ -1,0 +1,1767 @@
+-->1. Basic JavaScript Concepts
+
+==> 1. What is JavaScript?
+Answer:  
+JavaScript is a lightweight, interpreted programming language primarily used for creating interactive and dynamic content on websites. It enables developers to implement complex features like real-time updates, animations, and form validations.
+
+Example:
+----------------JS----------------------
+console.log("Hello, World!");
+-----------------------------------------
+
+---
+
+==> 2. What are Data Types in JavaScript?
+Answer:  
+JavaScript has primitive and non-primitive data types.
+
+- Primitive types: `Number`, `String`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt`
+- Non-primitive types: `Object`, `Array`, `Function`
+
+Example:
+----------------JS----------------------
+let num = 42; // Number
+let name = "Alice"; // String
+let isActive = true; // Boolean
+let person = { firstName: "John", lastName: "Doe" }; // Object
+-----------------------------------------
+
+---
+
+==> 3. Explain `var`, `let`, and `const`.
+Answer:  
+- `var` declarations are function-scoped and can be redeclared and reassigned.
+- `let` declarations are block-scoped and can be reassigned but not redeclared within the same scope.
+- `const` declarations are block-scoped and cannot be reassigned or redeclared.
+
+Example:
+----------------JS----------------------
+var x = 10;
+let y = 20;
+const z = 30;
+
+x = 15; // OK
+y = 25; // OK
+// z = 35; // Error
+-----------------------------------------
+
+---
+
+==> 4. What is Hoisting?
+Answer:  
+Hoisting is JavaScript's behavior of moving variable and function declarations to the top of their scope during compilation.
+
+Example:
+----------------JS----------------------
+console.log(a); // undefined
+var a = 5;
+-----------------------------------------
+
+In this case, `var a;` is hoisted, but assignment isn't.
+
+---
+
+==> 5. What is the difference between `==` and `===`?
+Answer:  
+- `==` compares values for equality with type coercion.
+- `===` compares both value and type without coercion.
+
+Example:
+----------------JS----------------------
+5 == '5'; // true
+5 === '5'; // false
+-----------------------------------------
+
+---
+
+-->2. Functions and Scope
+
+==> 6. What are arrow functions?
+Answer:  
+Arrow functions provide a shorter syntax for writing functions and do not bind their own `this`, `arguments`, `super`, or `new.target`.
+
+Example:
+----------------JS----------------------
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
+-----------------------------------------
+
+---
+
+==> 7. Explain closures.
+Answer:  
+A closure is a function that retains access to its outer scope even after the outer function has finished executing.
+
+Example:
+----------------JS----------------------
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
+
+const counter = outer();
+counter(); // 1
+counter(); // 2
+-----------------------------------------
+
+---
+
+==> 8. What is the difference between function declaration and function expression?
+Answer:  
+- Function declaration: `function funcName() {}` (hoisted)
+- Function expression: `const func = function() {}` (not hoisted)
+
+---
+
+-->3. Objects and Arrays
+
+==> 9. How do you create an object?
+Answer:  
+Using object literals or constructor functions.
+
+Example:
+----------------JS----------------------
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+-----------------------------------------
+
+---
+
+==> 10. How do you access object properties?
+Answer:  
+Using dot notation or bracket notation.
+
+Example:
+----------------JS----------------------
+console.log(person.firstName); // John
+console.log(person['lastName']); // Doe
+-----------------------------------------
+
+---
+
+==> 11. How do you add or delete properties from an object?
+Answer:  
+- Add: `obj.newProp = value;`
+- Delete: `delete obj.prop;`
+
+Example:
+----------------JS----------------------
+person.location = "NYC"; // Add
+delete person.age; // Delete
+-----------------------------------------
+
+---
+
+==> 12. How do you iterate over an array?
+Answer:  
+Using `for`, `forEach`, `for...of`, or `for...in`.
+
+Example:
+----------------JS----------------------
+const arr = [1, 2, 3];
+
+arr.forEach(item => console.log(item));
+
+for (let item of arr) {
+  console.log(item);
+}
+-----------------------------------------
+
+---
+
+-->4. Prototypes and Inheritance
+
+==> 13. What is prototype in JavaScript?
+Answer:  
+A prototype is an object from which other objects inherit properties. Every JavaScript object has a prototype.
+
+---
+
+==> 14. How does inheritance work in JavaScript?
+Answer:  
+Through the prototype chain. Objects inherit properties from their prototype.
+
+Example:
+----------------JS----------------------
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.greet = function() {
+  console.log(`Hello, ${this.name}`);
+};
+
+const person1 = new Person('Alice');
+person1.greet(); // Hello, Alice
+-----------------------------------------
+
+---
+
+==> 15. How to set up inheritance between two constructor functions?
+Answer:  
+Using `Object.create()`.
+
+Example:
+----------------JS----------------------
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function() {
+  console.log(`${this.name} makes a noise.`);
+};
+
+function Dog(name) {
+  Animal.call(this, name);
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {
+  console.log(`${this.name} barks.`);
+};
+
+const dog = new Dog('Buddy');
+dog.speak(); // Buddy makes a noise.
+dog.bark();  // Buddy barks.
+-----------------------------------------
+
+---
+
+-->5. Asynchronous JavaScript
+
+==> 16. What is the event loop?
+Answer:  
+The event loop is a mechanism that handles asynchronous callbacks in JavaScript, allowing non-blocking execution by queuing tasks and executing them when the call stack is empty.
+
+---
+
+==> 17. Explain Promises.
+Answer:  
+Promises represent the eventual completion (or failure) of an asynchronous operation.
+
+Example:
+----------------JS----------------------
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Resolved!'), 1000);
+});
+
+promise.then(result => console.log(result));
+-----------------------------------------
+
+---
+
+==> 18. What are async/await?
+Answer:  
+`async` functions return a promise, and `await` pauses the execution until the promise resolves.
+
+Example:
+----------------JS----------------------
+async function fetchData() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  console.log(data);
+}
+-----------------------------------------
+
+---
+
+-->6. ES6+ Features
+
+==> 19. What are template literals?
+Answer:  
+String literals allowing embedded expressions and multi-line strings.
+
+Example:
+----------------JS----------------------
+const name = 'Alice';
+console.log(`Hello, ${name}!`);
+-----------------------------------------
+
+---
+
+==> 20. What is destructuring?
+Answer:  
+Extracting values from arrays or objects into variables.
+
+Example:
+----------------JS----------------------
+const [a, b] = [1, 2];
+const { name } = { name: 'John', age: 30 };
+-----------------------------------------
+
+---
+
+==> 21. What are modules?
+Answer:  
+Modules allow code to be split into separate files with explicit import/export statements.
+
+Example:
+----------------JS----------------------
+// in math.js
+export function add(a, b) {
+  return a + b;
+}
+
+// in main.js
+import { add } from './math.js';
+console.log(add(2, 3));
+-----------------------------------------
+
+---
+
+-->7. Error Handling
+
+==> 22. How do you handle errors in JavaScript?
+Answer:  
+Using `try...catch` blocks.
+
+Example:
+----------------JS----------------------
+try {
+  throw new Error('Something went wrong');
+} catch (err) {
+  console.error(err.message);
+}
+-----------------------------------------
+
+---
+
+-->8. Miscellaneous
+
+==> 23. What is `this` keyword?
+Answer:  
+`this` refers to the object context from which a function is called.
+
+---
+
+==> 24. What are higher-order functions?
+Answer:  
+Functions that take other functions as arguments or return functions.
+
+Example:
+----------------JS----------------------
+const arr = [1, 2, 3];
+const doubled = arr.map(x => x * 2);
+-----------------------------------------
+
+---
+
+==> 25. What is debounce and throttle?
+Answer:  
+Techniques to limit the rate at which a function is invoked, often used for performance optimization.
+
+---
+Certainly! Here is the continuation of the comprehensive list of JavaScript interview questions, answers, and examples. I'll cover more advanced topics, best practices, and nuanced concepts.
+
+---
+
+-->9. Advanced JavaScript Concepts
+
+==> 26. Explain `call()`, `apply()`, and `bind()`.
+Answer:  
+These methods are used to set the `this` context in function invocation.
+
+- `call()`: Invokes function with a specified `this` and arguments separately.
+- `apply()`: Invokes function with a specified `this` and arguments as an array.
+- `bind()`: Returns a new function with `this` bound to the specified object.
+
+Examples:
+----------------JS----------------------
+const person = { name: 'Alice' };
+
+function greet(greeting) {
+  console.log(greeting + ', ' + this.name);
+}
+
+greet.call(person, 'Hello');    // Hello, Alice
+greet.apply(person, ['Hi']);    // Hi, Alice
+
+const boundGreet = greet.bind(person);
+boundGreet('Hey');              // Hey, Alice
+-----------------------------------------
+
+---
+
+==> 27. What is the difference between `null` and `undefined`?
+Answer:  
+- `undefined` indicates a variable has been declared but not assigned a value.
+- `null` is an assignment value that represents the intentional absence of any object value.
+
+Example:
+----------------JS----------------------
+let a;
+console.log(a); // undefined
+
+let b = null;
+console.log(b); // null
+-----------------------------------------
+
+---
+
+==> 28. What is a callback function?
+Answer:  
+A function passed as an argument to another function to be invoked later.
+
+Example:
+----------------JS----------------------
+function fetchData(callback) {
+  setTimeout(() => {
+    callback('Data loaded');
+  }, 1000);
+}
+
+fetchData((message) => console.log(message));
+-----------------------------------------
+
+---
+
+==> 29. What is the Event Delegation?
+Answer:  
+A technique of attaching a single event listener to a parent element to manage events for its child elements, leveraging event bubbling.
+
+Example:
+----------------JS----------------------
+document.getElementById('parent').addEventListener('click', function(e) {
+  if (e.target && e.target.matches('button')) {
+    console.log('Button clicked:', e.target.textContent);
+  }
+});
+-----------------------------------------
+
+---
+
+==> 30. What are JavaScript modules?
+Answer:  
+Modules are reusable pieces of code that can export variables, functions, or classes and import them into other files.
+
+Example:
+----------------JS----------------------
+// math.js
+export function add(a, b) { return a + b; }
+
+// main.js
+import { add } from './math.js';
+console.log(add(2, 3));
+-----------------------------------------
+
+---
+
+-->10. JavaScript Memory Management
+
+==> 31. What is garbage collection?
+Answer:  
+Automatic process of reclaiming memory occupied by objects that are no longer reachable in the program.
+
+==> 32. How can you prevent memory leaks?
+Answer:  
+By avoiding global variables, cleaning up event listeners, and properly managing closures and references.
+
+---
+
+-->11. Design Patterns in JavaScript
+
+==> 33. What is the singleton pattern?
+Answer:  
+Ensures a class has only one instance and provides a global point of access to it.
+
+Example:
+----------------JS----------------------
+const Singleton = (function() {
+  let instance;
+
+  function createInstance() {
+    const obj = new Object('I am the instance');
+    return obj;
+  }
+
+  return {
+    getInstance: function() {
+      if (!instance) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+const obj1 = Singleton.getInstance();
+const obj2 = Singleton.getInstance();
+console.log(obj1 === obj2); // true
+-----------------------------------------
+
+---
+
+==> 34. What is the Module Pattern?
+Answer:  
+A design pattern that encapsulates private variables and exposes public methods.
+
+Example:
+----------------JS----------------------
+const CounterModule = (function() {
+  let count = 0;
+
+  return {
+    increment: function() { count++; },
+    getCount: function() { return count; }
+  };
+})();
+
+CounterModule.increment();
+console.log(CounterModule.getCount()); // 1
+-----------------------------------------
+
+---
+
+-->12. Performance Optimization
+
+==> 35. How to improve JavaScript performance?
+Answer:  
+- Minimize DOM manipulation
+- Use event delegation
+- Debounce or throttle events
+- Use efficient algorithms
+- Avoid memory leaks
+
+---
+
+==> 36. What is event bubbling and capturing?
+Answer:  
+- Bubbling: Events propagate from the target element up to the window.
+- Capturing: Events propagate from the window down to the target element.
+
+Example:
+----------------JS----------------------
+element.addEventListener('click', handler, true); // capturing
+element.addEventListener('click', handler); // bubbling (default)
+-----------------------------------------
+
+---
+
+-->13. Browser APIs and DOM Manipulation
+
+==> 37. How do you manipulate DOM elements?
+Answer:  
+Using methods like `getElementById()`, `querySelector()`, `innerHTML`, `classList`, etc.
+
+Example:
+----------------JS----------------------
+const element = document.querySelector('#myDiv');
+element.innerHTML = 'Updated content';
+element.classList.add('active');
+-----------------------------------------
+
+---
+
+==> 38. What is the difference between `setTimeout` and `setInterval`?
+Answer:  
+- `setTimeout`: Executes a function once after a specified delay.
+- `setInterval`: Executes a function repeatedly at specified intervals.
+
+Example:
+----------------JS----------------------
+setTimeout(() => console.log('One-time'), 1000);
+const intervalId = setInterval(() => console.log('Repeated'), 2000);
+
+// To clear interval
+clearInterval(intervalId);
+-----------------------------------------
+
+---
+
+-->14. ES6+ Features Deep Dive
+
+==> 39. What are default parameters?
+Answer:  
+Allow functions to have default values for parameters if no argument is provided.
+
+Example:
+----------------JS----------------------
+function greet(name = 'Guest') {
+  console.log(`Hello, ${name}`);
+}
+greet(); // Hello, Guest
+-----------------------------------------
+
+---
+
+==> 40. What is the spread operator?
+Answer:  
+Expands iterable objects into individual elements.
+
+Example:
+----------------JS----------------------
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]
+-----------------------------------------
+
+---
+
+==> 41. What are rest parameters?
+Answer:  
+Allows functions to accept an indefinite number of arguments as an array.
+
+Example:
+----------------JS----------------------
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
+-----------------------------------------
+
+---
+
+-->15. Asynchronous Patterns and APIs
+
+==> 42. What is the difference between `Promise.all()` and `Promise.race()`?
+Answer:
+- `Promise.all()`: Resolves when all promises resolve, rejects if any promise rejects.
+- `Promise.race()`: Resolves or rejects as soon as one promise settles.
+
+Example:
+----------------JS----------------------
+Promise.all([promise1, promise2])
+  .then(results => console.log(results))
+  .catch(error => console.error(error));
+
+Promise.race([promise1, promise2])
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+-----------------------------------------
+
+---
+
+==> 43. How do you handle errors in async/await?
+Answer:  
+Using `try...catch` blocks.
+
+Example:
+----------------JS----------------------
+async function fetchData() {
+  try {
+    const response = await fetch('invalid-url');
+    const data = await response.json();
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+-----------------------------------------
+
+---
+
+-->16. Miscellaneous and Best Practices
+
+==> 44. What are pure functions?
+Answer:  
+Functions that always produce the same output for the same input and have no side effects.
+
+Example:
+----------------JS----------------------
+function add(a, b) {
+  return a + b;
+}
+-----------------------------------------
+
+---
+
+==> 45. What is immutability?
+Answer:  
+State or data that cannot be changed after creation. Use of immutable data structures helps avoid side effects.
+
+---
+
+==> 46. How to deep clone objects?
+Answer:  
+Using structured cloning or `JSON.parse(JSON.stringify(obj))` (limitations apply).
+
+Example:
+----------------JS----------------------
+const clone = JSON.parse(JSON.stringify(originalObj));
+-----------------------------------------
+
+---
+
+-->17. Practical Coding Questions
+
+==> 47. Write a function to check if a string is a palindrome.
+----------------JS----------------------
+function isPalindrome(str) {
+  const normalized = str.replace(/[\W_]+/g, '').toLowerCase();
+  return normalized === normalized.split('').reverse().join('');
+}
+console.log(isPalindrome('Madam')); // true
+-----------------------------------------
+
+---
+
+==> 48. Implement a debounce function.
+----------------JS----------------------
+function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// Usage:
+const handleResize = debounce(() => {
+  console.log('Resized window');
+}, 500);
+window.addEventListener('resize', handleResize);
+-----------------------------------------
+
+---
+Absolutely! Here's the continuation with more advanced and diverse JavaScript interview questions, answers, and examples:
+
+---
+
+-->18. Deep Dive into JavaScript Features
+
+==> 49. Explain `Symbol` in JavaScript.
+Answer:  
+`Symbol` is a primitive data type introduced in ES6. It creates unique identifiers, often used for object property keys to avoid naming collisions.
+
+Example:
+----------------JS----------------------
+const sym1 = Symbol('description');
+const sym2 = Symbol('description');
+
+console.log(sym1 === sym2); // false
+
+const obj = {
+  [sym1]: 'value1'
+};
+console.log(obj[sym1]); // value1
+-----------------------------------------
+
+---
+
+==> 50. What are generators?
+Answer:  
+Generators are special functions that can pause and resume their execution using `yield`. They are useful for implementing iterators.
+
+Example:
+----------------JS----------------------
+function* generatorFunc() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const gen = generatorFunc();
+
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+console.log(gen.next()); // { value: 3, done: false }
+console.log(gen.next()); // { value: undefined, done: true }
+-----------------------------------------
+
+---
+
+==> 51. What is the `Promise` chaining?
+Answer:  
+`Promise` chaining allows sequential asynchronous operations.
+
+Example:
+----------------JS----------------------
+fetchData()
+  .then(data => processData(data))
+  .then(result => displayResult(result))
+  .catch(error => console.error(error));
+-----------------------------------------
+
+---
+
+==> 52. What are `WeakMap` and `WeakSet`?
+Answer:  
+They are collections that hold weak references to objects, allowing garbage collection when no other references exist.
+
+- `WeakMap`: Keys are objects; Values can be any.
+- `WeakSet`: Contains objects only.
+
+Example:
+----------------JS----------------------
+const weakMap = new WeakMap();
+const objKey = {};
+
+weakMap.set(objKey, 'value');
+
+console.log(weakMap.get(objKey)); // 'value'
+-----------------------------------------
+
+---
+
+-->19. Event Loop and Concurrency
+
+==> 53. Explain how JavaScript handles concurrency.
+Answer:  
+JavaScript is single-threaded, but it handles concurrency via the event loop, callback queue, and Web APIs for asynchronous tasks.
+
+---
+
+==> 54. What's the difference between macro-task and micro-task queues?
+Answer:  
+- Macro-tasks: setTimeout, setInterval, I/O events, UI rendering.
+- Micro-tasks: Promise `.then()`, `MutationObserver`.
+
+Micro-tasks are executed after the current task, before rendering and macro-tasks.
+
+---
+
+-->20. JavaScript in Practice
+
+==> 55. Write a function to debounce a function call.
+----------------JS----------------------
+function debounce(fn, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+// Usage:
+const resizeHandler = debounce(() => console.log('Resized'), 300);
+window.addEventListener('resize', resizeHandler);
+-----------------------------------------
+
+---
+
+==> 56. Write a function to throttle calls.
+----------------JS----------------------
+function throttle(fn, limit) {
+  let inThrottle;
+  return function(...args) {
+    if (!inThrottle) {
+      fn.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Usage:
+const scrollHandler = throttle(() => console.log('Scrolled'), 200);
+window.addEventListener('scroll', scrollHandler);
+-----------------------------------------
+
+---
+
+-->21. JavaScript & Browser Internals
+
+==> 57. How does JavaScript handle asynchronous operations?
+Answer:  
+Through the event loop, which manages the call stack, callback queue, and microtask queue, ensuring non-blocking execution.
+
+---
+
+==> 58. What is the role of the `Web APIs`?
+Answer:  
+Web APIs are browser-provided APIs (like DOM, fetch, timers) that handle asynchronous tasks outside the JavaScript engine.
+
+---
+
+-->22. JavaScript Testing & Debugging
+
+==> 59. How do you debug JavaScript code?
+Answer:  
+Using browser developer tools: console logs, breakpoints, watch expressions, call stack inspection.
+
+==> 60. Write a simple test case using Jest.
+----------------JS----------------------
+// sum.js
+function sum(a, b) {
+  return a + b;
+}
+module.exports = sum;
+
+// sum.test.js
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+-----------------------------------------
+
+---
+
+-->23. Security in JavaScript
+
+==> 61. What are common security issues?
+Answer:  
+- Cross-site scripting (XSS)
+- Cross-site request forgery (CSRF)
+- Injection attacks
+- Data exposure
+
+==> 62. How can you prevent XSS?
+Answer:  
+- Encode user input
+- Use Content Security Policy (CSP)
+- Validate and sanitize inputs
+
+---
+
+-->24. Miscellaneous Questions
+
+==> 63. Explain `setImmediate()` and its support.
+Answer:  
+`setImmediate()` executes a script once the current poll phase completes. It is non-standard and mainly supported in Internet Explorer and Node.js.
+
+---
+
+==> 64. What is the `Intl` object?
+Answer:  
+Provides language-sensitive string comparison, number formatting, date and time formatting.
+
+Example:
+----------------JS----------------------
+const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+console.log(formatter.format(123456.789)); // $123,456.79
+-----------------------------------------
+
+---
+
+-->25. Node.js Specific Questions
+
+==> 65. How does Node.js handle asynchronous I/O?
+Answer:  
+Node.js uses an event-driven, non-blocking I/O model with an event loop, making it efficient for I/O-bound tasks.
+
+==> 66. Explain the Event Loop in Node.js.
+Answer:  
+The event loop manages the execution of callbacks, timers, I/O events, and microtasks, ensuring the non-blocking nature of Node.js.
+
+---
+
+==> 67. How do you handle errors in Node.js?
+Answer:  
+By passing errors to callbacks, using try-catch in async functions, or handling promise rejections.
+
+---
+
+==> 68. What is a stream in Node.js?
+Answer:  
+A stream is a sequence of data that is read from or written to in a continuous manner, suitable for handling large files or data flows.
+
+---
+
+-->26. Framework & Library-Related Questions
+
+==> 69. What are React hooks?
+Answer:  
+Functions that allow function components to have state and lifecycle features previously only available in class components.
+
+Example:
+----------------JS----------------------
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+-----------------------------------------
+
+---
+
+==> 70. What is Virtual DOM?
+Answer:  
+A lightweight copy of the real DOM used in React to optimize rendering by updating only changed parts.
+
+---
+
+Certainly! Here’s an extension to the previous list, focusing on more advanced, nuanced, and practical JavaScript interview topics, along with some challenging problems and solutions:
+
+---
+
+-->28. Advanced Coding Challenges & Pattern Questions
+
+==> 71. Implement a function to flatten a nested array.
+----------------JS----------------------
+function flattenArray(arr) {
+  return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []);
+}
+
+// Example:
+const nestedArr = [1, [2, [3, 4], 5], 6];
+console.log(flattenArray(nestedArr)); // [1, 2, 3, 4, 5, 6]
+-----------------------------------------
+
+---
+
+==> 72. Implement a deep equality check.
+----------------JS----------------------
+function deepEqual(a, b) {
+  if (a === b) return true;
+
+  if (typeof a !== 'object' || typeof b !== 'object' || a == null || b == null) {
+    return false;
+  }
+
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+
+  if (keysA.length !== keysB.length) return false;
+
+  for (const key of keysA) {
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// Usage:
+const obj1 = { name: 'Alice', details: { age: 25 } };
+const obj2 = { name: 'Alice', details: { age: 25 } };
+console.log(deepEqual(obj1, obj2)); // true
+-----------------------------------------
+
+---
+
+==> 73. Memoization: Optimize Fibonacci.
+----------------JS----------------------
+const memo = {};
+function fibonacci(n) {
+  if (n <= 1) return n;
+  if (memo[n]) return memo[n];
+
+  memo[n] = fibonacci(n - 1) + fibonacci(n - 2);
+  return memo[n];
+}
+console.log(fibonacci(50)); // Efficient for large n
+-----------------------------------------
+
+---
+
+==> 74. Debounce and Throttle combined scenario.
+Create a utility that can be configured for either debounce or throttle behavior.
+
+----------------JS----------------------
+function debounceThrottle(fn, delay, mode = 'debounce') {
+  let timeoutId = null;
+  let lastCall = 0;
+
+  return function(...args) {
+    if (mode === 'debounce') {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    } else if (mode === 'throttle') {
+      const now = Date.now();
+      if (now - lastCall >= delay) {
+        lastCall = now;
+        fn.apply(this, args);
+      }
+    }
+  };
+}
+-----------------------------------------
+
+---
+
+-->29. Closure and Scope Deep Dive
+
+==> 75. Closure example to create private variables.
+----------------JS----------------------
+function createCounter() {
+  let count = 0;
+  return {
+    increment() { count++; },
+    getCount() { return count; }
+  };
+}
+
+const counter = createCounter();
+counter.increment();
+console.log(counter.getCount()); // 1
+-----------------------------------------
+
+==> 76. Loop with closures mistake.
+----------------JS----------------------
+// Common mistake:
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+// Output: 3, 3, 3
+
+// Corrected with IIFE:
+for (var i = 0; i < 3; i++) {
+  ((index) => {
+    setTimeout(() => console.log(index), 100);
+  })(i);
+}
+// Output: 0, 1, 2
+-----------------------------------------
+
+---
+
+-->30. Prototype & Inheritance
+
+==> 77. Explain prototypal inheritance.
+Answer:  
+Objects inherit properties from other objects via prototypes. You can set an object's prototype using `Object.create()` or `__proto__`.
+
+Example:
+----------------JS----------------------
+const person = {
+  greet() { console.log('Hello'); }
+};
+const student = Object.create(person);
+student.study = () => console.log('Studying');
+
+student.greet(); // Hello
+student.study(); // Studying
+-----------------------------------------
+
+==> 78. Constructor function vs class syntax.
+----------------JS----------------------
+// Constructor function
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+// ES6 class
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+-----------------------------------------
+
+---
+
+-->31. Modern JavaScript APIs & Patterns
+
+==> 79. Using `Proxy` for reactive programming.
+----------------JS----------------------
+const handler = {
+  get(target, prop) {
+    console.log(`Getting ${prop}`);
+    return target[prop];
+  },
+  set(target, prop, value) {
+    console.log(`Setting ${prop} to ${value}`);
+    target[prop] = value;
+    return true;
+  }
+};
+
+const obj = new Proxy({ name: 'Alice' }, handler);
+console.log(obj.name); // Getting name, Alice
+obj.name = 'Bob'; // Setting name to Bob
+-----------------------------------------
+
+==> 80. Using `async/await` with error handling.
+----------------JS----------------------
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+fetchData();
+-----------------------------------------
+
+---
+
+-->32. Performance & Optimization
+
+==> 81. How to avoid blocking the main thread?
+Answer:  
+- Use Web Workers for heavy computation.
+- Debounce or throttle events.
+- Use requestAnimationFrame for visual updates.
+- Optimize rendering and DOM access.
+
+---
+
+==> 82. Detecting performance bottlenecks.
+Answer:  
+Use browser devtools Performance tab, Profile CPU/Memory, and audit tools like Lighthouse.
+
+---
+
+-->33. Security & Best Practices
+
+==> 83. Protect against XSS in user inputs.
+Answer:  
+- Encode output.
+- Use security libraries.
+- Implement CSP headers.
+- Validate and sanitize inputs.
+
+==> 84. Prevent memory leaks.
+Answer:  
+- Remove event listeners when not needed.
+- Avoid global variables.
+- Use weak references where appropriate.
+
+---
+
+-->34. Miscellaneous & Thought-Provoking Questions
+
+==> 85. What are JavaScript's strengths and limitations?
+Answer:  
+Strengths:  
+- Versatile for client and server-side development.
+- Asynchronous and event-driven.
+- Rich ecosystem and community.
+
+Limitations:  
+- Single-threaded, can block UI.
+- Dynamic typing may lead to runtime errors.
+- Performance issues with large data or complex calculations.
+
+---
+
+==> 86. What are some upcoming features in JavaScript?
+Answer:  
+- Pattern matching (`match`)
+- Records and Tuples
+- Temporal API for date/time
+- Top-level await
+- Private class fields
+
+---
+
+-->Final notes:
+- Keep practicing coding problems.
+- Review core concepts regularly.
+- Understand language internals for advanced roles.
+- Write clean, maintainable, and optimized code.
+
+---
+Certainly! Here's an additional set of advanced questions, coding exercises, and concepts to deepen your JavaScript knowledge and prepare for interviews:
+
+---
+
+-->35. Advanced JavaScript Concepts and Patterns
+
+==> 87. Explain the Module Pattern and how to implement it.
+Answer:  
+The Module Pattern encapsulates private variables and exposes public methods, promoting encapsulation and namespace management.
+
+Example:
+----------------JS----------------------
+const CounterModule = (function() {
+  let count = 0; // private variable
+
+  return {
+    increment() {
+      count++;
+    },
+    decrement() {
+      count--;
+    },
+    getCount() {
+      return count;
+    }
+  };
+})();
+
+CounterModule.increment();
+console.log(CounterModule.getCount()); // 1
+CounterModule.decrement();
+console.log(CounterModule.getCount()); // 0
+-----------------------------------------
+
+---
+
+==> 88. Explain the concept of currying.
+Answer:  
+Currying transforms a function with multiple arguments into a sequence of functions each taking a single argument.
+
+Example:
+----------------JS----------------------
+function multiply(a) {
+  return function(b) {
+    return a * b;
+  };
+}
+
+const multiplyBy2 = multiply(2);
+console.log(multiplyBy2(5)); // 10
+-----------------------------------------
+
+---
+
+==> 89. What is the difference between `.call()`, `.apply()`, and `.bind()`?
+Answer:  
+- `.call()`: calls function with specified `this` and arguments separately.
+- `.apply()`: calls function with specified `this` and arguments as an array.
+- `.bind()`: returns a new function with bound `this` and optional initial arguments.
+
+Example:
+----------------JS----------------------
+function greet(greeting) {
+  console.log(greeting + ', ' + this.name);
+}
+
+const person = { name: 'Alice' };
+
+greet.call(person, 'Hello'); // Hello, Alice
+greet.apply(person, ['Hi']); // Hi, Alice
+
+const boundGreet = greet.bind(person);
+boundGreet('Hey'); // Hey, Alice
+-----------------------------------------
+
+---
+
+-->36. Advanced Asynchronous Patterns
+
+==> 90. Implement a Promise-based sleep function.
+----------------JS----------------------
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Usage:
+async function demo() {
+  console.log('Start');
+  await sleep(2000);
+  console.log('End after 2 seconds');
+}
+demo();
+-----------------------------------------
+
+---
+
+==> 91. Implement a sequence of promises to fetch data from multiple endpoints sequentially.
+----------------JS----------------------
+async function fetchSequential() {
+  const response1 = await fetch('https://api.example.com/data1');
+  const data1 = await response1.json();
+
+  const response2 = await fetch('https://api.example.com/data2');
+  const data2 = await response2.json();
+
+  return { data1, data2 };
+}
+fetchSequential().then(result => console.log(result));
+-----------------------------------------
+
+---
+
+-->37. Memory Management & Optimization
+
+==> 92. How to prevent memory leaks in JavaScript?
+Answer:  
+- Remove event listeners when no longer needed.
+- Avoid global variables.
+- Use weak references (`WeakMap`, `WeakSet`) for caching.
+- Be cautious with closures that hold large objects.
+
+---
+
+==> 93. Explain garbage collection in JavaScript.
+Answer:  
+JavaScript uses an automatic garbage collector that frees memory occupied by objects no longer reachable in the program, based on reference counting or tracing algorithms.
+
+---
+
+-->38. Design Patterns in JavaScript
+
+==> 94. Singleton Pattern.
+Implementation:
+----------------JS----------------------
+const Singleton = (function() {
+  let instance;
+
+  function createInstance() {
+    const object = new Object('I am the instance');
+    return object;
+  }
+
+  return {
+    getInstance() {
+      if (!instance) {
+        instance = createInstance();
+      }
+      return instance;
+    }
+  };
+})();
+
+const instance1 = Singleton.getInstance();
+const instance2 = Singleton.getInstance();
+
+console.log(instance1 === instance2); // true
+-----------------------------------------
+
+---
+
+==> 95. Observer Pattern.
+Implementation:
+----------------JS----------------------
+class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  subscribe(observer) {
+    this.observers.push(observer);
+  }
+
+  unsubscribe(observer) {
+    this.observers = this.observers.filter(obs => obs !== observer);
+  }
+
+  notify(data) {
+    this.observers.forEach(observer => observer.update(data));
+  }
+}
+
+class Observer {
+  constructor(name) {
+    this.name = name;
+  }
+
+  update(data) {
+    console.log(`${this.name} received data: ${data}`);
+  }
+}
+
+// Usage:
+const subject = new Subject();
+const obs1 = new Observer('Observer1');
+const obs2 = new Observer('Observer2');
+
+subject.subscribe(obs1);
+subject.subscribe(obs2);
+
+subject.notify('Hello Observers!');
+-----------------------------------------
+
+---
+
+-->39. Error Handling & Robust Code
+
+==> 96. How to handle multiple asynchronous errors?
+Answer:  
+Use `Promise.allSettled()` which returns an array of results with statuses, allowing handling of individual promise rejections without aborting the entire process.
+
+----------------JS----------------------
+const promises = [
+  fetch('https://api.example.com/data1'),
+  fetch('https://api.example.com/data2')
+];
+
+Promise.allSettled(promises)
+  .then(results => results.forEach(result => {
+    if (result.status === 'fulfilled') {
+      console.log('Data:', result.value);
+    } else {
+      console.error('Error:', result.reason);
+    }
+  }));
+-----------------------------------------
+
+==> 97. Best practices for error handling in async functions.
+- Always use `try-catch` blocks.
+- Handle rejected promises explicitly.
+- Return meaningful error messages.
+
+---
+
+-->40. Coding Challenges & Algorithm Practice
+
+==> 98. Find the first non-repeating character in a string.
+----------------JS----------------------
+function firstUniqueChar(str) {
+  const charCount = {};
+  for (const char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+  for (const char of str) {
+    if (charCount[char] === 1) return char;
+  }
+  return null;
+}
+console.log(firstUniqueChar('abacabad')); // 'c'
+-----------------------------------------
+
+---
+
+==> 99. Implement a binary search.
+----------------JS----------------------
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (arr[mid] === target) return mid;
+    if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1;
+}
+console.log(binarySearch([1, 3, 5, 7, 9], 5)); // 2
+-----------------------------------------
+
+---
+Absolutely! Here's an additional set of advanced topics, best practices, and challenging problems to further deepen your JavaScript expertise:
+
+---
+
+-->41. Deep Dive into JavaScript Internals
+
+==> 100. Explain the Event Loop and its role in asynchronous JavaScript.
+Answer:  
+The event loop manages the execution of multiple chunks of code, handling asynchronous callbacks, microtasks, and rendering. It ensures non-blocking behavior by processing the call stack, task queue, and microtask queue in a specific order:
+
+1. Execute synchronous code (call stack).
+2. Process microtasks (e.g., Promise callbacks).
+3. Render updates.
+4. Process macrotasks (e.g., setTimeout, I/O).
+
+==> 101. How do JavaScript engines optimize code execution?
+Answer:  
+JavaScript engines use techniques such as Just-In-Time (JIT) compilation, inline caching, hidden classes, and garbage collection optimizations to improve performance.
+
+---
+
+-->42. Advanced Data Structures
+
+==> 102. Implement a Trie (Prefix Tree).
+----------------JS----------------------
+class TrieNode {
+  constructor() {
+    this.children = {};
+    this.endOfWord = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  insert(word) {
+    let current = this.root;
+    for (const char of word) {
+      if (!current.children[char]) {
+        current.children[char] = new TrieNode();
+      }
+      current = current.children[char];
+    }
+    current.endOfWord = true;
+  }
+
+  search(word) {
+    let current = this.root;
+    for (const char of word) {
+      if (!current.children[char]) return false;
+      current = current.children[char];
+    }
+    return current.endOfWord;
+  }
+
+  startsWith(prefix) {
+    let current = this.root;
+    for (const char of prefix) {
+      if (!current.children[char]) return false;
+      current = current.children[char];
+    }
+    return true;
+  }
+}
+
+// Usage:
+const trie = new Trie();
+trie.insert('apple');
+console.log(trie.search('apple')); // true
+console.log(trie.startsWith('app')); // true
+-----------------------------------------
+
+---
+
+==> 103. Implement a Doubly Linked List.
+----------------JS----------------------
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  append(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+  }
+
+  prepend(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head.prev = newNode;
+      this.head = newNode;
+    }
+  }
+
+  delete(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        if (current.prev) current.prev.next = current.next;
+        if (current.next) current.next.prev = current.prev;
+        if (current === this.head) this.head = current.next;
+        if (current === this.tail) this.tail = current.prev;
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
+}
+-----------------------------------------
+
+---
+
+-->43. Advanced Patterns & Techniques
+
+==> 104. Implement a Lazy Loading Function.
+----------------JS----------------------
+function lazyLoad(fn) {
+  let cache = null;
+  let called = false;
+
+  return function() {
+    if (!called) {
+      cache = fn.apply(this, arguments);
+      called = true;
+    }
+    return cache;
+  };
+}
+
+// Usage:
+const loadData = lazyLoad(() => {
+  console.log('Loading data...');
+  return { data: 'Sample' };
+});
+
+loadData(); // Logs 'Loading data...'
+loadData(); // No log, returns cached result
+-----------------------------------------
+
+==> 105. Debounce with Immediate Execution.
+----------------JS----------------------
+function debounceImmediate(func, wait) {
+  let timeout;
+  return function(...args) {
+    const callNow = !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      if (!callNow) func.apply(this, args);
+    }, wait);
+    if (callNow) func.apply(this, args);
+  };
+}
+-----------------------------------------
+
+---
+
+-->44. Cross-Browser Compatibility & Polyfills
+
+==> 106. Implement a polyfill for `Array.prototype.includes`.
+----------------JS----------------------
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function(searchElement, fromIndex = 0) {
+    return this.indexOf(searchElement, fromIndex) !== -1;
+  };
+}
+-----------------------------------------
+
+==> 107. Polyfill for `Object.assign`.
+----------------JS----------------------
+if (typeof Object.assign !== 'function') {
+  Object.assign = function(target, ...sources) {
+    if (target == null) throw new TypeError('Cannot convert undefined or null to object');
+    for (const source of sources) {
+      if (source != null) {
+        for (const key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+    }
+    return target;
+  };
+}
+-----------------------------------------
+
+---
+
+-->45. Coding Challenges: Algorithm Questions
+
+==> 108. Find the maximum subarray sum (Kadane's Algorithm).
+----------------JS----------------------
+function maxSubArraySum(arr) {
+  let maxSoFar = arr[0];
+  let maxEndingHere = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    maxEndingHere = Math.max(arr[i], maxEndingHere + arr[i]);
+    maxSoFar = Math.max(maxSoFar, maxEndingHere);
+  }
+  return maxSoFar;
+}
+
+console.log(maxSubArraySum([-2,1,-3,4,-1,2,1,-5,4])); // 6
+-----------------------------------------
+
+---
+
+==> 109. Check if a string is a palindrome.
+----------------JS----------------------
+function isPalindrome(str) {
+  const cleaned = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return cleaned === cleaned.split('').reverse().join('');
+}
+console.log(isPalindrome('A man, a plan, a canal, Panama')); // true
+-----------------------------------------
+
+---

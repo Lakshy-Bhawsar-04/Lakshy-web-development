@@ -1,15 +1,23 @@
 {
-  "name": "cutpro",
+  "name": "mern-project",
   "version": "1.0.0",
-  "description": "This is my MERN Stack project developed by me",
-  "license": "ISC",
+  "description": "A MERN Stack web application developed using Node.js, Express.js, MongoDB and React.",
   "author": "Lakshy Bhawsar",
+  "license": "ISC",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "keywords": [
+    "mern",
+    "nodejs",
+    "express",
+    "mongodb",
+    "react",
+    "web-application"
+  ],
   "dependencies": {
     "nodemon": "^3.1.14"
   }

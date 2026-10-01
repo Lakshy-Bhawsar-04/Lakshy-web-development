@@ -13,11 +13,12 @@ console.log("areaOfCircle(5)=", myFunc.areaOfCircle(5));
 console.log("areaOfEllipse(23,20)=", myFunc.areaOfEllipse(12, 20));
 
 
-
-info = {
-    username: "Lakshy",
-    password: 92920
+//call user module functions
+info={
+    username:"admin",
+    password:123456
 }
+console.log(user.login(info))
+console.log(user.login({"username":"user","password":121212}))
 
-
-console.log(user.signup({ username: "", password: "" }))  
+console.log(user.signup({usename:"",password:""}))

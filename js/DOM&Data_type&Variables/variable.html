@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable in JS</title>
+</head>
+<body>
+    
+    <script>
+        /* var type Variable : scope global , optionally initializing ,
+        hoisted (top to bottom) , redeclaration and reinitilization and 
+         reinitilization are possible */
+
+         var i;
+         console.log(i);
+         {
+            var i=22;
+            console.log("inside scope "+i)
+         }
+         var i=56;
+         console.log("outside scope "+i)
+
+         /* let type Variable : scope local , optionally initializing,
+         hoisted(top to bottom), redeclaration is not possible but
+         reinitilization is possible , Introduced in ES6  */
+
+         let a;
+         console.log(a);
+
+         {
+            let a=90 ;
+            console.log("inside scope let type Variable "+a)
+         }
+
+          a=909;
+          console.log("outside scope let type Variable "+a)
+
+          
+          /* const type Variable : scope local , initializing is compalsary,
+          redeclaration and reinitilization both are not possible , Introduced in ES6*/
+
+          const x = 877;
+          console.log(x);
+          {
+            const x =12121;
+            console.log(x)
+          }
+          console.log(x)
+
+
+          let t=10;
+          console.log(t);
+
+          let _t=13;
+          console.log(_t);
+
+          let $t =109;
+          console.log($t);
+
+          // not allowed
+         // let a#=133, a$$%==131, a- =89 , abc=1 + 76;
+
+         let abcd =15 , ABCD=23 , AbCd = 56 , Abcd = 59;
+         console.log(abcd)
+         console.log(ABCD)
+         console.log(AbCd)
+         console.log(Abcd)
+
+
+    </script>
+</body>
+</html>

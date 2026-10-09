@@ -74,11 +74,11 @@ console.log(tem2);
 
 // Destructuring Assignment
 
-let dataNew = [1054,"Lakshy Bhawsar","IPhone 18 PRO",250000,"5/11/26","10/11/26"];
+let dataNew = [1054, "Lakshy Bhawsar", "IPhone 18 PRO", 250000, "5/11/26", "10/11/26"];
 
 console.log(dataNew);
 
-let [idNew,namenew,product,price,orderdate,delDate]=dataNew;
+let [idNew, namenew, product, price, orderdate, delDate] = dataNew;
 
 console.log(idNew)
 console.log(namenew)
@@ -88,9 +88,9 @@ console.log(orderdate)
 console.log(delDate)
 
 
-var udata = {id:2323,name:"Virat Kohli",dob:"5/11/1988"}
+var udata = { id: 2323, name: "Virat Kohli", dob: "5/11/1988" }
 
-let {id,name,dob}=udata;
+let { id, name, dob } = udata;
 
 console.log(id)
 console.log(name)
@@ -99,7 +99,7 @@ console.log(dob)
 
 // Default Parameters
 
-const Hello=(name="LAK")=>{
+const Hello = (name = "LAK") => {
     console.log(`hello ${name}`)
 }
 Hello()
@@ -109,10 +109,10 @@ Hello("RAM")
 //Enhanced Object Literals
 
 let prod = {
-    id:234356,
-    name:"Men Shirt",
-    price:799,
-    allInfo:function(){return this.id+","+this.name+","+this.price}
+    id: 234356,
+    name: "Men Shirt",
+    price: 799,
+    allInfo: function () { return this.id + "," + this.name + "," + this.price }
 }
 
 console.log(prod);

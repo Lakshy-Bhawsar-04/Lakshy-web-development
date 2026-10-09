@@ -1,7 +1,7 @@
-import {add,sub,multi} from "./function.js"
-console.log(add(3,4));
-console.log(sub(8,4));
-console.log(multi(8,4));
+import { add, sub, multi } from "./function.js"
+console.log(add(3, 4));
+console.log(sub(8, 4));
+console.log(multi(8, 4));
 
 // import m from "./function.js";
 // console.log(m.add(3,4));

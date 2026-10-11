@@ -1,0 +1,4 @@
+this is writeStream data1
+this is writeStream data2
+this is writeStream data3
+finished write data in file

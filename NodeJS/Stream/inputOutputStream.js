@@ -7,7 +7,6 @@ const fs = require('fs');
 const readStream = fs.createReadStream('./senderfile.txt');
 
 // Writeing to a file 
-
 const writeStream = fs.createWriteStream('./reciverfile.txt');
 
 // readStream.pipe(writeStream);

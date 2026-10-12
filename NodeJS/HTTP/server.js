@@ -58,7 +58,7 @@ const server = http.createServer((req, res) => {
             res.end(`${req.method}:method not allowed`);
         }
     }
-})
+})    
 
 //listen method to call server start
 

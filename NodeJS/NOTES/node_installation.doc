@@ -1,0 +1,61 @@
+Here are the step-by-step instructions to install Node.js on both Linux and Windows:
+
+=>Installing Node.js on Linux
+
+1. Open Terminal: Press `Ctrl + Alt + T` to open the terminal.
+
+2. Update Package Index: Run the following command to update your package index:
+
+   bash
+   -----------------------
+   sudo apt update
+   -----------------------
+   
+
+
+3. Install Node.js: Use the following command to install Node.js:
+   bash
+   ---------------------------
+   sudo apt install nodejs
+   ---------------------------
+   
+4. Install npm: Install npm (Node Package Manager) with:
+   bash
+   -----------------------
+   sudo apt install npm
+   -----------------------
+   
+5. Verify Installation: Check the installed versions of Node.js and npm:
+   bash
+   -----------------------
+   node -v
+   npm -v
+   -----------------------
+
+=>Installing Node.js on Windows
+
+1. Download Installer: Go to the [official Node.js website](https://nodejs.org) and download the Windows installer (LTS version is recommended).
+
+2. Run Installer: Double-click the downloaded `.msi` file to start the installation.
+
+3. Follow Setup Wizard:
+   -> Click "Next" on the welcome screen.
+   -> Accept the license agreement and click "Next".
+   -> Choose the installation directory and click "Next".
+   -> Select the components you want to install and click "Next".
+   -> Click "Install" to begin the installation.
+   
+   
+4. Complete Installation: Once the installation is complete, click "Finish".
+
+5. Verify Installation: Open Command Prompt and check the installed versions:
+   
+   ->cmd
+   -----------------------
+   node -v
+   npm -v
+   ----------------------
+   
+
+
+z

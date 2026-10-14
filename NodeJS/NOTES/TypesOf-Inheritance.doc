@@ -1,0 +1,91 @@
+In JavaScript, inheritance refers to the mechanism by which objects acquire properties and behaviors from other objects. JavaScript primarily supports prototypal inheritance, but there are various ways to implement inheritance patterns. Here are the main types:
+
+==>1. Prototype Chain Inheritance
+- Objects inherit directly from other objects via their prototype.
+- Example:
+  -----------------------------------------------
+  const parent = {
+    greet() {
+      console.log('Hello from parent');
+    }
+  };
+
+  const child = Object.create(parent);
+  child.greet(); // Output: Hello from parent
+  -----------------------------------------------
+
+==>2. Constructor Function Inheritance
+- Using constructor functions and the `prototype` property.
+- Example:
+  -----------------------------------------------
+  function Person(name) {
+    this.name = name;
+  }
+
+  Person.prototype.greet = function() {
+    console.log(`Hello, my name is ${this.name}`);
+  };
+
+  function Student(name, subject) {
+    Person.call(this, name); // Inherit properties
+    this.subject = subject;
+  }
+
+  Student.prototype = Object.create(Person.prototype); // Inherit methods
+  Student.prototype.constructor = Student;
+
+  const student1 = new Student('Alice', 'Math');
+  student1.greet(); // Hello, my name is Alice
+  -----------------------------------------------
+
+==>3. Class-Based Inheritance (ES6 Classes)
+- Using the `class` syntax with `extends`.
+- Example:
+  -----------------------------------------------
+  class Person {
+    constructor(name) {
+      this.name = name;
+    }
+
+    greet() {
+      console.log(`Hello, my name is ${this.name}`);
+    }
+  }
+
+  class Student extends Person {
+    constructor(name, subject) {
+      super(name); // Call parent constructor
+      this.subject = subject;
+    }
+
+    study() {
+      console.log(`${this.name} is studying ${this.subject}`);
+    }
+  }
+
+  const student1 = new Student('Bob', 'Physics');
+  student1.greet(); // Hello, my name is Bob
+  student1.study(); // Bob is studying Physics
+  -----------------------------------------------
+
+==>4. Object.create() for Prototype Inheritance
+- Creates a new object with the specified prototype object.
+- Example:
+  -----------------------------------------------
+  const parent = {
+    greet() {
+      console.log('Hello from parent');
+    }
+  };
+
+  const child = Object.create(parent);
+  child.greet(); // Hello from parent
+  -----------------------------------------------
+
+---
+
+==>Summary:
+- Prototypal inheritance (via prototypes and `Object.create`)
+- Constructor function inheritance (using constructor functions and prototype chaining)
+- Class-based inheritance (using ES6 classes with `extends`)
+- Direct object inheritance (via `Object.create`)

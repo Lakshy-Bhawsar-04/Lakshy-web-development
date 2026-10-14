@@ -1,0 +1,126 @@
+>HTTP MODULE CREATING OWN Server, HEADERS MANAGEMENT
+
+Creating your own server using the HTTP module in Node.js is a great way to learn about server-side development. The HTTP module allows you to create a server, manage requests and responses, and handle HTTP headers. Let's go through the steps to create a simple HTTP server and manage headers.
+
+Step-by-Step Guide
+    1. Creating a Simple HTTP Server
+    server.js
+    ---------------------------------
+    const http = require('http');
+
+    // Create an HTTP server
+    const server = http.createServer((req, res) => {
+        // Set the response HTTP headers with a status code and content type
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        
+        // Send the response body
+        res.end('Hello, World!\n');
+    });
+
+    // The server listens on port 3000
+    server.listen(3000, '127.0.0.1', () => {
+        console.log('Server running at http://127.0.0.1:3000/');
+    });
+
+    ---------------------------------
+
+    Explanation
+    ->Importing the HTTP Module:
+
+    const http = require('http'); - This imports the HTTP module.
+
+    ->Creating the Server:
+
+    http.createServer((req, res) => { ... }); - This creates an HTTP server that listens for requests.
+
+    The callback function takes req (request) and res (response) objects as parameters.
+
+    ->Setting HTTP Headers:
+
+    res.writeHead(200, { 'Content-Type': 'text/plain' }); - This sets the status code to 200 (OK) and the content type to text/plain.
+
+    ->Sending the Response:
+
+    res.end('Hello, World!\n'); - This sends the response body and ends the response.
+
+    ->Listening on a Port:
+
+    server.listen(3000, '127.0.0.1', () => { ... }); - This starts the server and listens on port 3000. The callback function runs when the server starts.
+
+    2. Handling Different Routes and Headers
+    server.js
+
+    ------------------------------------
+    const http = require('http');
+
+    const server = http.createServer((req, res) => {
+        if (req.url === '/') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('<h1>Welcome to the Home Page!</h1>');
+        } else if (req.url === '/about') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('<h1>About Us</h1><p>This is the about page.</p>');
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('<h1>404 Not Found</h1>');
+        }
+    });
+
+    server.listen(3000, '127.0.0.1', () => {
+        console.log('Server running at http://127.0.0.1:3000/');
+    });
+
+    ------------------------------------
+
+    Explanation
+    ->Handling Routes:
+
+    ->The server checks req.url to determine the requested URL path.
+
+    ->For the home page (/), it responds with an HTML welcome message.
+
+    ->For the about page (/about), it responds with an HTML about message.
+
+    ->For any other path, it responds with a 404 Not Found error.
+
+=>Setting Different Headers:
+
+    Depending on the route, different headers are set using res.writeHead().
+
+    3. Managing Custom Headers
+    server.js
+    -------------------------------------
+    const http = require('http');
+
+    const server = http.createServer((req, res) => {
+        // Set custom headers
+        res.setHeader('Custom-Header', 'This is a custom header');
+        
+        if (req.url === '/') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end('<h1>Welcome to the Home Page!</h1>');
+        } else if (req.url === '/json') {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Hello, JSON!' }));
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('<h1>404 Not Found</h1>');
+        }
+    });
+
+    server.listen(3000, '127.0.0.1', () => {
+        console.log('Server running at http://127.0.0.1:3000/');
+    });
+
+    -------------------------------------
+    Explanation
+    ->Setting Custom Headers:
+
+    res.setHeader('Custom-Header', 'This is a custom header'); - This sets a custom header for the response.
+
+    ->Handling JSON Response:
+
+    The server can also handle JSON responses by setting the content type to application/json and using JSON.stringify() to convert an object to a JSON string.
+
+    Summary
+    By following these steps, you can create a simple HTTP server in Node.js, manage different routes, and handle custom HTTP headers. This foundational knowledge is essential for building more complex web applications with Node.js.

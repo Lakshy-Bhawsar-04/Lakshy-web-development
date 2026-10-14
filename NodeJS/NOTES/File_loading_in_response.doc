@@ -1,0 +1,88 @@
+.txt file content send on responce in node.js
+
+
+    You can create a Node.js server that reads the content of a .txt file and sends it in the response. Here's a simple example to illustrate how to achieve this:
+
+    Example: Serving a .txt File Content in Response
+
+    Step 1: Create a Sample Text File
+    First, create a text file named example.txt in your project directory with some sample content:
+
+    example.txt
+
+    ------------------------------------------
+    This is a sample text file.
+    It contains multiple lines of text.
+    Enjoy reading!
+
+    ------------------------------------------
+
+    Step 2: Create the Server to Serve the Text File Content
+    server.js
+
+    -------------------------------------------
+    const http = require('http');
+    const fs = require('fs');
+    const path = require('path');
+
+    const server = http.createServer((req, res) => {
+        if (req.method === 'GET' && req.url === '/file') {
+            const filePath = path.join(__dirname, 'example.txt');
+
+            fs.readFile(filePath, 'utf8', (err, data) => {
+                if (err) {
+                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.end('Internal Server Error');
+                } else {
+                    res.writeHead(200, { 'Content-Type': 'text/plain' });
+                    res.end(data);
+                }
+            });
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('404 Not Found');
+        }
+    });
+
+    // Start the server
+    const PORT = 3000;
+    server.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}/`);
+    });
+
+    -------------------------------------------
+
+    Explanation
+    Importing Modules:
+
+    ->http: To create the server.
+
+    ->fs: To interact with the file system.
+
+    ->path: To work with file and directory paths.
+
+    ->Creating the Server:
+
+        http.createServer((req, res) => { ... });: Creates an HTTP server and sets up a request handler.
+
+    ->Handling GET Request for the Text File:
+
+    ->Checks if the request method is GET and the URL is /file.
+
+    ->Sets the file path for the text file.
+
+    ->Reading the File:
+
+        fs.readFile(filePath, 'utf8', (err, data) => { ... });: Reads the content of the text file asynchronously.
+
+        If an error occurs (e.g., file not found), it responds with a 500 Internal Server Error status.
+
+        If the file is read successfully, it responds with a 200 OK status and sends the content of the file.
+
+        Handling 404 Not Found:
+
+        If the URL does not match /file, it responds with a 404 Not Found status.
+
+    ->Starting the Server:
+
+    server.listen(PORT, () => { ... });: Starts the server and listens on the specified port.

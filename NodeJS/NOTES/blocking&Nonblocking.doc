@@ -1,0 +1,64 @@
+BLOCKING & NON BLOCKING CODE on nodejs
+
+=>In Node.js, the concepts of blocking and non-blocking code are fundamental to understanding how the platform handles I/O operations. These concepts are key to ensuring that applications remain efficient and responsive.
+
+=>Blocking Code:
+
+    Blocking code refers to operations that block the execution of subsequent code until the current operation completes. This means that the program will wait for the operation to finish before moving on to the next line of code. This can lead to inefficiency and slow performance, especially in I/O-bound operations like reading files or making network requests.
+
+    -----------------------------------------------
+    Example:-
+    // blockingExample.js
+
+    const fs = require('fs');
+
+    console.log('Start reading file...');
+    const data = fs.readFileSync('example.txt', 'utf8'); // Blocking operation
+    console.log('File content:', data);
+    console.log('Finished reading file.');
+
+    -----------------------------------------------
+
+    In this example, fs.readFileSync is a synchronous, blocking operation. The program will not proceed to the next line until the file is fully read.
+
+    ===========================================================
+
+=>Non-Blocking Code:
+
+    Non-blocking code allows the execution of subsequent code without waiting for the current operation to complete. This is achieved using callbacks, promises, or async/await, making Node.jshighly efficient for I/O-bound tasks.
+
+    ----------------------------------------------
+    Example of Non-Blocking Code using Callbacks
+
+    // nonBlockingCallback.js
+
+    const fs = require('fs');
+
+    console.log('Start reading file...');
+    fs.readFile('example.txt', 'utf8', (err, data) => {
+        if (err) throw err;
+        console.log('File content:', data);
+    });
+    console.log('Finished reading file.');
+
+    ---------------------------------------------------
+    Here, fs.readFile is an asynchronous, non-blocking operation. The program continues to execute the next line (console.log('Finished reading file.')) while the file is being read. Once the file reading completes, the callback function is executed.
+
+    ->Example of Non-Blocking Code using Promises
+
+    --------------------------------------------------
+    // nonBlockingPromise.js
+    
+    const fs = require('fs').promises;
+
+    console.log('Start reading file...');
+    fs.readFile('example.txt', 'utf8')
+        .then(data => {
+            console.log('File content:', data);
+        })
+        .catch(err => {
+            console.error('Error reading file:', err);
+        });
+    console.log('Finished reading file.');
+
+    --------------------------------------------------

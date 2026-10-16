@@ -10,7 +10,7 @@
 
 6. insert one data in collection:
 
-db.Users.insertOne({"Name": "Lakshy Bhawsar","Mobile": "+91-8438283482","Email": "ab@gmail.com","Account Type": "Admin")}
+db.User.insertOne({"Name": "Lakshy Bhawsar","Mobile": "+91-8438283482","Email": "ab@gmail.com","Account Type": "Admin")}
 
 7. insert many in one query:
 

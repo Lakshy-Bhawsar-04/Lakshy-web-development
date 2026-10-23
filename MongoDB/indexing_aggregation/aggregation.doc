@@ -1,0 +1,157 @@
+MongoDB Aggregation Framework, which allows you to process data and perform complex data transformations. Below are explanations for each operator along with examples and queries.
+
+=> `$match`
+    The `$match` stage filters the documents to pass only the documents that match the specified condition to the next pipeline stage.
+
+    ->Example:
+    Assume there is a collection `employees`:
+
+    ------------------------------------------
+
+    { "_id": 1, "name": "Alice", "department": "Sales", "age": 30 }
+    { "_id": 2, "name": "Bob", "department": "HR", "age": 25 }
+    { "_id": 3, "name": "Charlie", "department": "Sales", "age": 35 }
+    
+    ------------------------------------------
+
+
+    =>Query:
+
+    ------------------------------------
+    db.employees.aggregate([
+        { $match: { department: "Sales" } }
+    ]);
+    ------------------------------------
+
+    =>Output:
+    ```json
+    { "_id": 1, "name": "Alice", "department": "Sales", "age": 30 }
+    { "_id": 3, "name": "Charlie", "department": "Sales", "age": 35 }
+```
+
+    2. `$group`
+    The `$group` stage groups documents by a specified key and can perform aggregations for numeric fields.
+
+    **Example:**
+
+    Query:
+    ----------------------------------
+    db.employees.aggregate([
+        { $group: { _id: "$department", avgAge: { $avg: "$age" } } }
+    ]);
+    -----------------------------------
+
+    Output:
+    ----------------------------------
+    { "_id": "Sales", "avgAge": 32.5 }
+    { "_id": "HR", "avgAge": 25 }
+    ----------------------------------
+
+3. `$sort`
+    The `$sort` stage sorts the documents by specified fields.
+    
+    Example:
+
+    Query:
+    ----------------------------------------
+    db.employees.aggregate([
+        { $sort: { age: -1 } } // Sort by age in descending order
+    ]);
+    -----------------------------------------
+
+    Output:
+    -----------------------------------------
+    { "_id": 3, "name": "Charlie", "department": "Sales", "age": 35 }
+    { "_id": 1, "name": "Alice", "department": "Sales", "age": 30 }
+    { "_id": 2, "name": "Bob", "department": "HR", "age": 25 }
+    -----------------------------------------
+
+4. `$project`
+The `$project` stage allows you to reshape each document in the stream, typically used to modify or exclude fields.
+
+    Example:
+
+    Query:
+    -----------------------------------------
+    db.employees.aggregate([
+        { $project: { name: 1, age: 1, _id: 0 } } // Include only name and age fields
+    ]);
+    -----------------------------------------
+
+    Output:
+    -----------------------------------
+    { "name": "Alice", "age": 30 }
+    { "name": "Bob", "age": 25 }
+    { "name": "Charlie", "age": 35 }
+    -----------------------------------
+
+5. `$limit`
+    The `$limit` stage limits the number of documents passed along to the next stage.
+
+    Example:
+
+    Query:
+    -----------------------------------
+    db.employees.aggregate([
+        { $limit: 2 }
+    ]);
+    -----------------------------------
+
+    Output:
+    -----------------------------------
+    { "_id": 1, "name": "Alice", "department": "Sales", "age": 30 }
+    { "_id": 2, "name": "Bob", "department": "HR", "age": 25 }
+    -----------------------------------
+
+6. `$skip`
+The `$skip` stage skips over the specified number of documents in the stream.
+
+    Example:
+
+    Query:
+    ---------------------------------
+    db.employees.aggregate([
+        { $skip: 1 }
+    ]);
+    ---------------------------------
+
+    Output:
+    ----------------------------------
+    { "_id": 2, "name": "Bob", "department": "HR", "age": 25 }
+    { "_id": 3, "name": "Charlie", "department": "Sales", "age": 35 }
+    ----------------------------
+    
+     7. `$lookup`
+        The `$lookup` stage performs a left outer join to a different collection.
+
+    Assume we have a second collection `departments`:
+
+    -----------------------------
+
+    { "_id": "Sales", "location": "New York" }
+    { "_id": "HR", "location": "San Francisco" }
+
+    -----------------------------
+
+    Example:
+
+    Query:
+    ---------------------------
+    db.employees.aggregate([
+        { 
+            $lookup: {
+                from: "departments",
+                localField: "department",
+                foreignField: "_id",
+                as: "departmentDetails"
+            }
+        }
+    ]);
+    ----------------------------
+
+    **Output:**
+    ----------------------------------------------
+    { "_id": 1, "name": "Alice", "department": "Sales", "age": 30, "departmentDetails": [ { "_id": "Sales", "location": "New York" } ] }
+    { "_id": 2, "name": "Bob", "department": "HR", "age": 25, "departmentDetails": [ { "_id": "HR", "location": "San Francisco" } ] }
+    { "_id": 3, "name": "Charlie", "department": "Sales", "age": 35, "departmentDetails": [ { "_id": "Sales", "location": "New York" } ] }
+    ----------------------------------------------

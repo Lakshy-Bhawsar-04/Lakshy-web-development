@@ -1,0 +1,93 @@
+In MongoDB, working with capped and uncapped collections has distinct implications for how data is stored and managed. Below is an overview of the differences between these two types of collections, how to create them, and how to perform selected updates.
+
+=>Capped Collections
+
+A capped collection is a fixed-size collection that maintains insertion order. When the collection reaches its size limit, it automatically overwrites the oldest documents.
+
+    ->Characteristics:
+        --> Fixed size (in bytes).
+        --> Preserves insertion order.
+        --> Documents cannot be deleted individually.
+        --> Fast inserts and reads.
+
+=>Creating a Capped Collection
+To create a capped collection, you specify the `capped` option and provide a maximum size or document count. 
+
+    ------------------------------------
+    db.createCollection("myCappedCollection", { capped: true, size: 1024 * 1024, maxDocuments: 1000 })
+    ------------------------------------
+
+    example:
+    ------------------------------------
+    db.createCollection("customer",{capped:true,size:5242880,max:4})
+    ------------------------------------
+
+=>Inserting Documents
+    You can insert documents just like you would in any other collection:
+
+    -----------------------------------
+    db.myCappedCollection.insert({ name: "document1", value: 42 })
+    -----------------------------------
+
+=>Selected Updates
+    You can use the `$set`, `$unset`, or other update operators to modify documents in capped collections, but keep in mind that the document cannot be resized (i.e., if the size of a document increases due to an update, the update will fail).
+
+    -------------------------------------
+    db.myCappedCollection.update(
+        { name: "document1" },
+        { $set: { value: 100 } }
+    )
+    -------------------------------------
+
+=>Uncapped Collections
+
+    An uncapped collection does not have a size limit and allows for standard database operations. You can freely insert, update, and delete documents.
+
+    ->Characteristics:
+        -->No size limit.
+        --> Documents can be freely updated or deleted.
+        --> No order guarantee for documents.
+
+=>Creating an Uncapped Collection
+    You create an uncapped collection using the following command. By default, collections are uncapped unless specified otherwise.
+
+    ------------------------------------------
+    db.createCollection("myUncappedCollection")
+    ------------------------------------------
+
+=>Inserting Documents
+    You insert documents into an uncapped collection in the same way as capped collections.
+
+    ------------------------------------------
+    db.myUncappedCollection.insert({ name: "document1", value: 42 })
+    ------------------------------------------
+
+=>Selected Updates
+    You can perform updates on documents in an uncapped collection without the limitations of capped collections.
+
+    ------------------------------------------
+    db.myUncappedCollection.update(
+        { name: "document1" },
+        { $set: { value: 100 } }
+    )
+    ------------------------------------------
+
+=>Summary of Key Points
+
+    -> Capped Collections: Fixed size, maintain order, do not allow individual document deletions, and are ideal for logging or real-time data feeds.
+    -> Uncapped Collections: No size restriction, allow any type of operations (insert, update, delete), and can be used for generic data storage needs.
+
+=>Important Considerations
+
+    1. Use Cases:
+        -> Use capped collections for scenarios needing predictability regarding data retention and order, such as logging or caching.
+        -> Use uncapped collections when the data size is unpredictable or when frequent updates and deletes are necessary.
+
+    2. Performance:
+        -> Capped collections are more efficient for writes since they overwrite the oldest documents without needing complex index updates.
+        -> Uncapped collections may incur overhead due to managing additional document space and the possibility of fragmented storage.
+
+    3. Limitations on Updates:
+        -> Updates to documents in capped collections are limited in that documents cannot grow larger than their original size.
+
+In MongoDB, the choice between using capped and uncapped collections will depend on the specific use case and operational requirements of your application.

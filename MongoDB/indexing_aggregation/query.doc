@@ -1,0 +1,22 @@
+1. db.user.aggregate({$match:{gender:"Male"}})
+
+
+2.db.user.aggregate(
+    [
+        {$group:
+            {
+                _id:"$Age",
+                 name:{$push:"$FullName"}
+            }
+        }
+    ]
+)
+
+3. db.user.aggregate([{$group:{_id:"$designation",name:{$push:"$FullName"}}}])
+
+
+4. db.user.aggregate([{$group:{_id:"$designation",allData:{$push:"$$ROOT"}}}])
+
+5. db.Customer.aggregate([{$sort:{id:-1}}])
+
+6.db.Customer.aggregate([{$group:{_id:"$gender",names:{$push:"$first_name"}}},{ $limit: 2 },{ $sort: { _id: -1 } }])

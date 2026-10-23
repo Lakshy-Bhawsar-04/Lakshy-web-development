@@ -1,0 +1,136 @@
+SIMPLE QUERY INSERT SELECT DATA FILTER in mongo db
+
+
+
+1. Insert Data: To insert data into a MongoDB collection, use the insertOne() or insertMany() methods.
+
+    -------------------------------------
+
+    // Insert a single document
+    db.collectionName.insertOne({ key1: "value1", key2: "value2" });
+
+    example:
+    db.employee.insertOne({DrName:"Dr. Kamal sharma",Specilization:"cordilogy",designation:"sr.doctor",degree:"MBBS,MD"})
+    ***********************************
+    // Insert multiple documents
+    db.collectionName.insertMany([
+    { key1: "value1a", key2: "value2a" },
+    { key1: "value1b", key2: "value2b" }
+    ]);
+
+    example:
+
+    db.employee.insertMany([{DrName:"Dr. Prabha salve",Specilization:"cordilogy",designation:"jr. doctor",degree:"MBBS"},{DrName:"Dr. Rahul Gupta",Specilization:"Dentist",desicnation:"jr. Doctor",degree:"MBBS"})
+
+    -------------------------------------
+
+2. Select Data: To query (select) data, use the find() method.
+
+    -------------------------------------
+
+    // Select all documents
+    db.collectionName.find({});
+
+    // Select documents with a filter
+    db.collectionName.find({ key1: "value1" });
+    
+    example:
+
+    db.employee.find({degree:"MBBS"})
+    -------------------------------------
+
+3. Data Filtering: You can filter documents using various conditions in the find() method.
+
+    -------------------------------------
+    
+    // Select documents where key1 equals "value1"
+    db.collectionName.find({ key1: "value1" });
+
+    // Select documents where key2 is greater than a value
+    db.collectionName.find({ key2: { $gt: 10 } });
+
+    // Select documents with multiple conditions
+    db.collectionName.find({ key1: "value1", key2: { $lte: 20 } });
+
+    -------------------------------------
+
+4.Update in MongoDB
+    You can use updateOne, updateMany, or replaceOne methods to update documents in a collection.
+
+    1. updateOne()
+    This method updates a single document that matches the filter.
+
+    Syntex
+    ------------------------------------
+    db.collection.updateOne(filter, update, options)
+    ------------------------------------
+
+    Example
+
+    -----------------------------------
+    db.users.updateOne(
+        { username: "john_doe" },  // Filter
+        { $set: { age: 30 } }      // Update
+    );
+    -----------------------------------
+    2. updateMany()
+    This method updates multiple documents that match the filter.
+-
+    Syntax:
+    -----------------------------------
+    db.collection.updateMany(filter, update, options)
+    -----------------------------------
+    Example
+    ----------------------------------
+    db.users.updateMany(
+        { isActive: false },         // Filter
+        { $set: { status: "inactive" } } // Update
+    );
+    ----------------------------------
+
+    3. replaceOne()
+    This method replaces an entire document that matches the filter.
+
+    Syntax:
+    ------------------------------------
+    db.collection.replaceOne(filter, replacement, options)
+    ------------------------------------
+
+    Example
+    ------------------------------------
+    db.users.replaceOne(
+        { username: "john_doe" }, 
+        { username: "john_doe", age: 30, status: "active" } // New document
+    );
+    ------------------------------------
+
+5. Delete in MongoDB
+
+    You can use deleteOne or deleteMany methods to remove documents from a collection.
+
+    1. deleteOne()
+    This method deletes a single document that matches the filter.
+
+    Syntax:
+
+    --------------------------------------
+    db.collection.deleteOne(filter)
+    --------------------------------------
+
+    Examples
+    --------------------------------------
+    db.users.deleteOne({ username: "john_doe" });
+    --------------------------------------
+
+    2. deleteMany()
+    This method deletes multiple documents that match the filter.
+
+    Syntax:
+    ----------------------------------------
+    db.collection.deleteMany(filter)
+    ----------------------------------------
+
+    Example
+    ----------------------------------------
+    db.users.deleteMany({ isActive: false });
+    ----------------------------------------

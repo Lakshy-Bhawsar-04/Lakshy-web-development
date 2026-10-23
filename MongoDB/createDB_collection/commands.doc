@@ -1,0 +1,22 @@
+1. "mongosh"-> start mongogodb using shell command on terminal
+
+2. "show dbs"-> show all dbs in our connections
+
+3. "use dbName"-> create new Database/ select exixting database
+
+4. "db.createCollection("User")": create collection in database.
+
+5."show collections"-> show all collection list 
+
+
+6.insert one data in collection:  
+
+ db.User.insertOne({"Name":"Ram sharma","Mobile":"+91-8798564564","Email":"rs@gmail.com","Account Type":"Admin"})
+
+7.insert many in one query:
+
+db.Customer.insertMany([{"Name":"Rajiv Mina","Mobile":"+91-8798765456","Email":"rm234@gmail.com"},{"Name":"Kiran Kumawat","Mobile":"+91-8798765676","Email":"kk767@gmail.com"}])
+
+8. find records:
+
+db.Customer.find()

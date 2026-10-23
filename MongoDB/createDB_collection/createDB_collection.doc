@@ -1,0 +1,70 @@
+FEATURES, CUI ACCESS, MONGO COMMANDSCREATE DB, COLLECTION DOCUMENTS
+-------------------------------------------------------------------
+
+=>Features of MongoDB
+    ->Schema-less Database: MongoDB is a NoSQL database, which means it doesn't require a predefined schema.
+
+    ->Scalability: It scales horizontally using sharding.Horizontal sharding refers to taking a single MySQL database and partitioning the data across several database servers, each with an identical schema.
+
+    ->Performance: Its document-oriented data model allows for faster read/write operations.
+
+    ->Flexibility: JSON-like documents are easy to store and query.
+
+    ->Indexing: Supports secondary indexes to improve search performance.
+
+    ->Aggregation: Powerful aggregation framework for data analysis and transformation.
+
+    ->Replication: High availability with replica sets.
+
+    =====================================================
+
+=>Command-Line Interface (CUI) Access
+
+    To access the MongoDB shell, open your terminal and type:
+
+    ------------------------------------------
+    mongosh
+    ------------------------------------------
+
+    This will launch the interactive MongoDB shell where you can run various commands.
+
+    MongoDB Commands to Create Database, Collection, and Documents
+    Here's a quick guide to creating a database, a collection within it, and adding documents to that collection.
+
+    1. Create a Database:
+
+    -----------------------------------------
+
+    use myDatabase
+
+    -----------------------------------------
+
+    note:This will switch to the database myDatabase. If it doesn't exist, MongoDB will create it.
+
+    2. Create a Collection:
+
+    -----------------------------------------
+
+    db.createCollection("myCollection")
+
+    -----------------------------------------
+    note:This will create a collection named myCollection.
+
+
+    3.Insert Documents:
+
+    ->for single data
+    ------------------------------------------
+    
+    db.myCollection.insertOne({name: "ram sharma", age: 30, city: "Indore"})
+
+    ------------------------------------------
+
+    -> for multiple data
+    -------------------------------------------
+    db.myCollection.insertMany([
+        {name: "ram sharma", age: 25, city: "Indore"},
+        {name: "mohan yadav", age: 35, city: "Indore"}
+    ])
+
+    -------------------------------------------

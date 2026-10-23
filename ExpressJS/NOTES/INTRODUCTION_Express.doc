@@ -1,0 +1,617 @@
+EXPRESS.JS NOTES
+
+1. WHAT IS EXPRESS.JS?
+
+Express.js is a fast, lightweight and flexible web application framework for Node.js.
+
+It is used to:
+- Create web servers
+- Create APIs
+- Handle HTTP requests and responses
+- Manage routes
+- Use middleware
+- Build REST APIs
+
+Definition:
+Express.js is a Node.js framework used to build web servers and APIs easily.
+
+
+2. INSTALL EXPRESS.JS
+
+Create a Node.js project:
+
+npm init -y
+
+Install Express:
+
+npm install express
+
+
+3. BASIC EXPRESS SERVER
+
+const express = require("express");
+
+const app = express();
+
+app.listen(3000, () => {
+    console.log("Server is running");
+});
+
+Explanation:
+
+require("express")
+Imports the Express module.
+
+express()
+Creates an Express application.
+
+app.listen()
+Starts the server on a particular port.
+
+
+4. BASIC GET REQUEST
+
+app.get("/", (req, res) => {
+    res.send("Hello World");
+});
+
+app.get()
+Handles a GET request.
+
+req
+Means request.
+
+res
+Means response.
+
+res.send()
+Sends a response to the client.
+
+
+5. ROUTING
+
+Routing means defining how the server responds to different URLs.
+
+Example:
+
+app.get("/", (req, res) => {
+    res.send("Home Page");
+});
+
+app.get("/about", (req, res) => {
+    res.send("About Page");
+});
+
+app.get("/contact", (req, res) => {
+    res.send("Contact Page");
+});
+
+
+6. HTTP METHODS
+
+GET
+Used to read or retrieve data.
+
+POST
+Used to create or send data.
+
+PUT
+Used to update existing data.
+
+PATCH
+Used to partially update data.
+
+DELETE
+Used to delete data.
+
+
+7. GET REQUEST
+
+app.get("/users", (req, res) => {
+    res.send("All Users");
+});
+
+
+8. POST REQUEST
+
+app.post("/users", (req, res) => {
+    res.send("User Created");
+});
+
+
+9. PUT REQUEST
+
+app.put("/users/1", (req, res) => {
+    res.send("User Updated");
+});
+
+
+10. DELETE REQUEST
+
+app.delete("/users/1", (req, res) => {
+    res.send("User Deleted");
+});
+
+
+11. REQUEST AND RESPONSE
+
+Request:
+Request is the data sent by the client to the server.
+
+Request can contain:
+- URL
+- Parameters
+- Query
+- Headers
+- Body
+
+Response:
+Response is the data sent by the server back to the client.
+
+
+12. res.send()
+
+Used to send a response.
+
+Example:
+
+app.get("/", (req, res) => {
+    res.send("Hello Lakshy");
+});
+
+
+13. res.json()
+
+Used to send JSON data.
+
+Example:
+
+app.get("/user", (req, res) => {
+    res.json({
+        id: 1,
+        name: "Lakshy",
+        course: "BSc CS"
+    });
+});
+
+
+14. ROUTE PARAMETERS
+
+Route parameters are dynamic values inside the URL.
+
+Example:
+
+app.get("/user/:id", (req, res) => {
+    res.send(req.params.id);
+});
+
+URL:
+
+http://localhost:3000/user/101
+
+Output:
+
+101
+
+:req.params
+
+Used to access route parameters.
+
+
+15. MULTIPLE ROUTE PARAMETERS
+
+app.get("/user/:id/:name", (req, res) => {
+    res.json(req.params);
+});
+
+URL:
+
+/user/101/Lakshy
+
+Output:
+
+{
+    "id": "101",
+    "name": "Lakshy"
+}
+
+
+16. QUERY PARAMETERS
+
+Query parameters are values sent after ? in a URL.
+
+Example:
+
+/users?name=Lakshy&age=21
+
+Code:
+
+app.get("/users", (req, res) => {
+    res.json(req.query);
+});
+
+Output:
+
+{
+    "name": "Lakshy",
+    "age": "21"
+}
+
+req.query
+
+Used to access query parameters.
+
+
+17. ROUTE PARAMETER VS QUERY PARAMETER
+
+Route Parameter:
+
+/users/101
+
+Access using:
+
+req.params
+
+
+Query Parameter:
+
+/users?id=101
+
+Access using:
+
+req.query
+
+
+18. REQUEST BODY
+
+Request body contains data sent by the client to the server.
+
+Example JSON:
+
+{
+    "name": "Lakshy",
+    "age": 21
+}
+
+Access using:
+
+req.body
+
+To read JSON data, use:
+
+app.use(express.json());
+
+
+19. EXPRESS.JSON()
+
+express.json() is built-in middleware.
+
+It is used to parse incoming JSON data.
+
+Example:
+
+const express = require("express");
+
+const app = express();
+
+app.use(express.json());
+
+app.post("/user", (req, res) => {
+    console.log(req.body);
+    res.send("Data received");
+});
+
+
+20. MIDDLEWARE
+
+Middleware is a function that runs during the request-response cycle.
+
+Example:
+
+app.use((req, res, next) => {
+    console.log("Middleware executed");
+    next();
+});
+
+next()
+
+next() passes control to the next middleware or route.
+
+
+21. TYPES OF MIDDLEWARE
+
+1. Application-level middleware
+2. Router-level middleware
+3. Built-in middleware
+4. Error-handling middleware
+5. Third-party middleware
+
+
+22. BUILT-IN MIDDLEWARE
+
+Express provides built-in middleware.
+
+Example:
+
+app.use(express.json());
+
+Used to parse JSON request body.
+
+Another example:
+
+app.use(express.static("public"));
+
+Used to serve static files.
+
+
+23. STATIC FILES
+
+Static files are files such as:
+
+HTML
+CSS
+JavaScript
+Images
+
+Example:
+
+app.use(express.static("public"));
+
+
+24. EXPRESS ROUTER
+
+Router is used to organize routes into separate files.
+
+Example:
+
+const express = require("express");
+
+const router = express.Router();
+
+router.get("/", (req, res) => {
+    res.send("Home");
+});
+
+router.get("/about", (req, res) => {
+    res.send("About");
+});
+
+module.exports = router;
+
+
+Use router in main file:
+
+const router = require("./router");
+
+app.use("/", router);
+
+
+25. STATUS CODES
+
+200 = OK
+201 = Created
+400 = Bad Request
+401 = Unauthorized
+403 = Forbidden
+404 = Not Found
+500 = Internal Server Error
+
+Example:
+
+res.status(404).send("User not found");
+
+
+26. ERROR HANDLING
+
+Express provides error-handling middleware.
+
+Example:
+
+app.use((err, req, res, next) => {
+    res.status(500).send("Something went wrong");
+});
+
+
+27. REST API
+
+REST API is used for communication between frontend and backend.
+
+Example:
+
+GET       /users
+POST      /users
+GET       /users/101
+PUT       /users/101
+DELETE    /users/101
+
+
+28. CRUD
+
+CRUD means:
+
+C = Create
+R = Read
+U = Update
+D = Delete
+
+CRUD and HTTP methods:
+
+Create = POST
+Read = GET
+Update = PUT / PATCH
+Delete = DELETE
+
+
+29. EXPRESS + MONGODB
+
+In MERN stack:
+
+React
+   ↓
+Express
+   ↓
+Node.js
+   ↓
+MongoDB
+
+Express handles API requests and Node.js communicates with MongoDB.
+
+
+30. COMPLETE BASIC EXPRESS SERVER
+
+const express = require("express");
+
+const app = express();
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+    res.send("Home Page");
+});
+
+app.get("/users", (req, res) => {
+    res.json([
+        {
+            id: 1,
+            name: "Lakshy"
+        },
+        {
+            id: 2,
+            name: "Rahul"
+        }
+    ]);
+});
+
+app.post("/users", (req, res) => {
+    console.log(req.body);
+    res.status(201).send("User Created");
+});
+
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
+});
+
+
+31. IMPORTANT EXPRESS FUNCTIONS
+
+express()
+Creates Express application.
+
+app.listen()
+Starts the server.
+
+app.get()
+Handles GET request.
+
+app.post()
+Handles POST request.
+
+app.put()
+Handles PUT request.
+
+app.patch()
+Handles PATCH request.
+
+app.delete()
+Handles DELETE request.
+
+app.use()
+Used for middleware.
+
+res.send()
+Sends a response.
+
+res.json()
+Sends JSON response.
+
+res.status()
+Sets HTTP status code.
+
+req.params
+Accesses route parameters.
+
+req.query
+Accesses query parameters.
+
+req.body
+Accesses request body.
+
+
+32. EXPRESS LEARNING ORDER
+
+Node.js
+↓
+Express Installation
+↓
+Server
+↓
+Routing
+↓
+Request and Response
+↓
+HTTP Methods
+↓
+Params
+↓
+Query
+↓
+Body
+↓
+Middleware
+↓
+Router
+↓
+REST API
+↓
+CRUD
+↓
+MongoDB
+↓
+Mongoose
+↓
+Authentication
+↓
+JWT
+
+
+33. IMPORTANT INTERVIEW QUESTIONS
+
+Q1. What is Express.js?
+
+Express.js is a Node.js framework used to build web servers and APIs.
+
+Q2. What is middleware?
+
+Middleware is a function that executes during the request-response cycle.
+
+Q3. What is routing?
+
+Routing defines how an application responds to different URLs and HTTP methods.
+
+Q4. What is req.params?
+
+req.params is used to access route parameters.
+
+Q5. What is req.query?
+
+req.query is used to access query parameters.
+
+Q6. What is req.body?
+
+req.body is used to access data sent in the request body.
+
+Q7. What is express.json()?
+
+express.json() is middleware used to parse incoming JSON data.
+
+Q8. What is app.use()?
+
+app.use() is used to register middleware in an Express application.
+
+Q9. What is REST API?
+
+REST API is an API architecture used for communication between client and server.
+
+Q10. What is CRUD?
+
+CRUD stands for Create, Read, Update and Delete.

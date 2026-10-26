@@ -1,0 +1,14 @@
+use("e-commerce");
+
+// db.products.updateOne({name:"Wireless Mouse"},
+//     { $set: {price:999}}
+// ) 
+
+// db.products.updateMany({category:"Electronics"},
+//     {$inc : {stock:11}}
+// )
+
+db.products.updateOne(
+    { name: "Wireless Mouse"},
+    { $push: {tags: "Mouse"}}
+)

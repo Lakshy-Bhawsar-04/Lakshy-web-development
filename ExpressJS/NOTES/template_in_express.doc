@@ -1,0 +1,105 @@
+Express.js Template Engine
+
+
+=>What is a template engine?
+
+    A template engine facilitates you to use static/dynamic template files in your applications. At runtime, it replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. So this approach is preferred to design HTML pages easily.
+
+    Following is a list of some popular template engines that work with Express.js:
+
+
+    ->ejs(Embedded JavaScript)
+    ->Pug (formerly known as jade)
+    ->mustache
+    ->dust
+    ->atpl
+    ->eco
+    ->ect
+    ->haml
+    ->haml-coffee
+    ->handlebars
+    ->hogan
+    ->jazz
+    ->jqtpl
+    ->JUST
+    ->liquor
+    ->QEJS
+    ->swig
+    ->templayed
+    ->toffee
+    ->underscore
+    ->walrus
+    ->whiskers
+
+    In the above template engines, pug (formerly known as jade) and mustache seems to be most popular choice. Pug is similar to haml which uses whitespace. According to the template-benchmark, pug is 2x slower than Handlebars, EJS, Underscore. ECT seems to be the fastest. Many programmers like mustache template engine mostly because it is one of the simplest and versatile template engines.
+
+----------------------------------
+
+=>Using template engines with Express
+
+    Template engine makes you able to use static template files in your application. To render template files you have to set the following application setting properties:
+
+    For example: 
+    -----------------------------
+    app.set('views', './views').
+
+    ----------------------------
+
+    Views: It specifies a directory where the template files are located.
+    view engine: It specifies the template engine that you use. For example, to use the Pug template engine: app.set('view engine', 'pug').
+    Let's take a template engine pug (formerly known as jade).
+
+    ***************************************
+
+    =>ejs Template Engine
+
+    EJS (Embedded JavaScript): Allows you to embed JavaScript code within your HTML. It's simple and similar to PHP, but with JavaScript.
+
+    Install ejs
+    Execute the following command to install ejs template engine:
+    ------------------------------
+    npm install ejs 
+    ------------------------------
+
+    ejs template must be written inside .ejs file and all .ejs files must be put inside views folder in the root folder of Node.js application.
+
+    Note: By default Express.js searches all the views in the views folder under the root folder. you can also set to another folder using views property in express.
+    
+    ********************************
+    create views folder on root folder and create .ejs file
+
+    example:
+
+    1. views/index.ejs
+    -------------------------
+    
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title><%= title%></title>
+    </head>
+    <body>
+        <h1>Hello, <%= name %>!</h1>
+        <h1>welcome in , <%= institute %>!</h1>
+    </body>
+    </html>
+
+    -------------------------
+
+    2. create server.js file on root folder
+
+    -------------------------
+    const express = require('express');
+    const app = express();
+    app.set('view engine', 'ejs');
+
+
+    app.get('/', (req, res) => {
+        res.render('index', {title:'FIRST EJS TEMPLATE', name: 'arpit gaveshinde',institute: 'universal informatics' });
+    });
+
+    app.listen(5001, () => {
+        console.log('Server is running on port 5001');
+    });
+
+    -------------------------

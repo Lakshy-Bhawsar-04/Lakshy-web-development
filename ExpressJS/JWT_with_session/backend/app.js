@@ -64,60 +64,60 @@ app.post('/register', async (req, res) => {
 })
 
 //login API
-app.post('/login', async (req,res)=>{ 
-    const {username , password} = req.body;
-    if(!username || !password){
-        return res.status(400).json({message: "Please enter username and password both"});
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        return res.status(400).json({ message: "Please enter username and password both" });
     }
-    const user = await User.findOne({username});
+    const user = await User.findOne({ username });
     // console.log(user);
-    if(!user){
-        return res.status(400).json({message:"username is not exist in our database"});
+    if (!user) {
+        return res.status(400).json({ message: "username is not exist in our database" });
     }
 
-    const isMatch = await bcrypt.compare(password,user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     console.log(isMatch);
-    if(!isMatch){
-        return res.status(400).json({message:"Incorrect password please try again !"});
+    if (!isMatch) {
+        return res.status(400).json({ message: "Incorrect password please try again !" });
 
     }
 
-    const token = jwt.sign({userId:user._id},'your_jwt_secret',{expiresIn:'1h'});
+    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
 
-    req.session.token=token;
-    req.session.userId=user._id;
-    res.json({message:"Login successfully"});
-    
+    req.session.token = token;
+    req.session.userId = user._id;
+    res.json({ message: "Login successfully" });
+
 })
 
 //profile API
-app.get('/profile',async (req,res)=>{
-    if(!req.session.token){
-        return res.status(401).json({message:"Not authenticated"});
+app.get('/profile', async (req, res) => {
+    if (!req.session.token) {
+        return res.status(401).json({ message: "Not authenticated" });
     }
 
-    try{
+    try {
         const decode = jwt.verify(req.session.token, 'your_jwt_secret');
         // console.log(decode);
-        const user = await User.findOne(decode.userId).select('-password');
-        if(!user){
-            return res.status(404).json({message:"User not found"})
+        const user = await User.findById(decode.userId).select('-password');
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
         }
-        res.json({user});
+        res.json({ user });
     }
-    catch(err){
-        res.status(401).json({message:"Invalid session or token"});
+    catch (err) {
+        res.status(401).json({ message: "Invalid session or token" });
     }
 })
 
 //logout API
-app.post('/logout',(req,res)=>{
-    req.session.destroy(err =>{
-        if(err){
-            return res.status(500).json({message:"Error logging out"});
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: "Error logging out" });
         }
-        else{
-            res.json({message:"Logout successfully"})
+        else {
+            res.json({ message: "Logout successfully" })
         }
     })
 });
